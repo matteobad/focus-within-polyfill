@@ -1,57 +1,36 @@
-import supportsPseudo from './supports-pseudo'
+(function(window, document) {
+	'use strict';
 
-(function() {
-	const FOCUS_WITHIN = 'focus-within'
+	var update = (function() {
+		var running, last;
 
-	// polyfill if browser doesn not support :focus-within
-	if (!supportsPseudo(FOCUS_WITHIN + '()')) {
-		document.addEventListener('focus', update, true)
-		document.addEventListener('blur', update, true)
-	}
+		var action = function() {
+			var element = document.activeElement;
+			running = false;
 
-	/**
-	 * Add [focus-within] attribute
-	 * @param {Element} element
-	 */
-	const attachNewFocusWithin = (element) => {
-		for (let el = element; el; el = el.parentNode) {
-			el.setAttribute(FOCUS_WITHIN)
-		}
-	}
+			if (last !== element) {
+				for (let el = last; el && el.nodeType === 1; el = el.parentNode) {
+					el.classList.remove('focus-within')
+				}
 
-	/**
-	 * Remove [focus-within] attribute
-	 * @param {Element} element
-	 */
-	const removeOldFocusWithin = (element) => {
-		for (let el = element; el; el = el.parentNode) {
-			el.removeAttribute(FOCUS_WITHIN)
-		}
-	}
+				for (let el = element; el && el.nodeType === 1; el = el.parentNode) {
+					el.classList.add('focus-within')
+				}
 
-	/**
-	 * Setup [focus-within] attribute on focus/blur events
-	 */
-	const update = () => {
-		let running, lastElement
-
-		const action = () => {
-			const element = document.activeElement
-			running = false
-
-			if (lastElement !== element) {
-				removeOldFocusWithin(lastElement)
-				attachNewFocusWithin(element)
-				lastElement = element
+				last = element;
 			}
-		}
+		};
 
-		return () => {
+		return function() {
 			if (!running) {
-				requestAnimationFrame(action)
-				running = true
+				requestAnimationFrame(action);
+				running = true;
 			}
-		}
-	}
+		};
 
-})()
+	})();
+
+	document.addEventListener('focus', update, true);
+	document.addEventListener('blur', update, true);
+
+})(window, document);

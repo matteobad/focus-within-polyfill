@@ -2,7 +2,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const config = {
 	devtool: 'source-map',
-	watch: false,
+	watch: true,
 	watchOptions: {
 		ignored: '/(node_modules|bower_components)/'
 	},
