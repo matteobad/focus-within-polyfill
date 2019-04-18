@@ -5,13 +5,7 @@ const modeConfig = mode => require(`./webpack.${mode}.js`)
 
 const config = {
 	module: {
-		rules: [
-			{
-				test: /\.m?js$/,
-				exclude: /node_modules|bower_components/,
-				loader: 'babel-loader',
-			}
-		]
+		rules: []
 	}
 }
 
@@ -19,10 +13,12 @@ module.exports = (env, argv) => {
 	return webpackMerge(
 		config, {
 			name: 'focus-within-polyfill',
-			entry: './src/index.js',
+			entry: {
+				['focus-within-polyfill']: path.resolve('./src/focus-within-polyfill.js')
+			},
 			output: {
 				path: path.resolve(__dirname, 'dist'),
-				filename: "[name].js"
+				filename: '[name].js'
 			},
 		},
 		modeConfig(argv.mode)
