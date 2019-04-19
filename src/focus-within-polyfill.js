@@ -1,7 +1,7 @@
 !function focusWithinPolyfill(window, document) {
 	'use strict';
 
-	var running, last, element;
+	var el, element, lastElement, running;
 
 	function update() {
 		if (!running) {
@@ -14,25 +14,26 @@
 		element = document.activeElement;
 		running = false;
 
-		if (element !== last) {
-			for (let el = last; el && el.nodeType === 1; el = el.parentNode) {
-				el.classList.remove('focus-within')
-			}
+		if (element !== lastElement) {
+			for (el = lastElement; el && el.nodeType === 1; el = el.parentNode)
+				el.classList.remove('focus-within');
 
-			for (let el = element; el && el.nodeType === 1; el = el.parentNode) {
-				el.classList.add('focus-within')
-			}
+			if (element && element.nodeName.toLowerCase() !== 'body')
+				for (el = element; el && el.nodeType === 1; el = el.parentNode)
+					el.classList.add('focus-within');
 
-			last = element;
+			lastElement = element;
 		}
 	}
 
 	try {
 		document.querySelector(':focus-within');
+		console.info(':focus-within pseudo class already supported.');
 
 	} catch (error) {
 		document.addEventListener('focus', update, true);
 		document.addEventListener('blur', update, true);
+		console.info(':focus-within pseudo class polyfilled.');
 	}
 
 }(window, document);
