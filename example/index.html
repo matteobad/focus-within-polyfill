@@ -1,17 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Example - focus within polyfill</title>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Example - focus within polyfill</title>
 
-	<main id="main"></main>
+		<style>
+			html.focus-within {
+				background: red;
+			}
 
-	<script src="../src/focus-within-polyfill.js"></script>
-	<script src="index.js"></script>
+			.main,
+			form {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+		</style>
+	</head>
+	<body>
+		<main id="main" class="main">
+			<section class="button-container">
+				<button>button</button>
+			</section>
 
-</body>
+			<section class="a-container">
+				<a href="#">link</a>
+			</section>
+
+			<section class="form-container">
+				<form action="">
+					<input type="text" name="text" id="text" />
+					<input type="radio" name="radio" id="radio" />
+					<input type="checkbox" name="checkbox" id="checkbox" />
+					<textarea
+						name="textarea"
+						id="textarea"
+						cols="30"
+						rows="10"
+					></textarea>
+					<select name="select" id="select">
+						<option value="option"></option>
+					</select>
+				</form>
+			</section>
+		</main>
+
+		<script src="../src/focus-within-polyfill.js"></script>
+		<!-- <script src="index.js"></script> -->
+	</body>
 </html>
