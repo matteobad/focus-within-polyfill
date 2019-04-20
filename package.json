@@ -1,29 +1,47 @@
 {
-  "name": "focus-within-polyfill",
-  "version": "1.0.0",
-  "description": "focus-within pseudo selector polyfill",
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "webpack --config webpack.config.js --mode=production",
-    "build:dev": "webpack --config webpack.config.js --mode=development",
-    "version": "npm run build && npm --no-git-tag-version version",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Matteo Badini",
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "babel-loader": "^8.0.5",
-    "clean-webpack-plugin": "^2.0.1",
-    "eslint": "^5.16.0",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0",
-    "webpack-merge": "^4.2.1"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "ie >= 11"
-  ]
+	"name": "focus-within-polyfill",
+	"version": "1.2.0",
+	"description": "focus-within pseudo selector polyfill",
+	"main": "dist/focus-within-polyfill.js",
+	"scripts": {
+		"build": "webpack --mode production",
+		"build:dev": "webpack --mode development --progress --colors",
+		"version": "npm run build && npm --no-git-tag-version version",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/matteobad/focus-within-polyfill"
+	},
+	"bugs": {
+		"url": "https://github.com/matteobad/focus-within-polyfill/issues"
+	},
+	"keywords": [
+		"polyfill",
+		"focus",
+		"blur",
+		"focus-within",
+		"pseudo-class",
+		"no-jquery",
+		"vanilla",
+		"vanillajs",
+		"vanilla-javascript"
+	],
+	"author": "Matteo Badini",
+	"license": "MIT",
+	"devDependencies": {
+		"@babel/core": "^7.4.3",
+		"@babel/preset-env": "^7.4.3",
+		"babel-loader": "^8.0.5",
+		"clean-webpack-plugin": "^2.0.1",
+		"eslint": "^5.16.0",
+		"eslint-loader": "^2.1.2",
+		"webpack": "^4.30.0",
+		"webpack-cli": "^3.3.0",
+		"webpack-merge": "^4.2.1"
+	},
+	"browserslist": [
+		"last 2 versions",
+		"ie >= 11"
+	]
 }

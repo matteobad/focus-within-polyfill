@@ -1,14 +1,11 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-
 const config = {
-	devtool: 'source-map',
+	devtool: "source-map",
+	target: "web",
+	stats: "minimal",
 	watch: true,
 	watchOptions: {
-		ignored: '/(node_modules|bower_components)/'
-	},
-	plugins: [
-		new CleanWebpackPlugin(),
-	]
-}
+		ignored: "/(node_modules|bower_components)/"
+	}
+};
 
-module.exports = config
+module.exports = config;

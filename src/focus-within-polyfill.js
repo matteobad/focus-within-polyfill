@@ -1,6 +1,24 @@
 !(function focusWithinPolyfill(window, document) {
 	"use strict";
 
+	var message;
+
+	// TODO extract support check
+	try {
+		document.querySelector(":focus-within");
+		message = ":focus-within pseudo class already supported.";
+	} catch (error) {
+		document.addEventListener("focus", update, true);
+		document.addEventListener("blur", update, true);
+		message =
+			":focus-within pseudo class polyfilled.\n" +
+			"Style for the '.focus-within' class is needed.";
+	} finally {
+		console.groupCollapsed("Polyfill :focus-within");
+		console.info(`%c${message}`, `color: green`);
+		console.groupEnd();
+	}
+
 	/**
 	 * Update focus-within class on focus and blur events
 	 * @param {FocusEvent} e
@@ -25,14 +43,5 @@
 			window.requestAnimationFrame(action);
 			running = true;
 		}
-	}
-
-	try {
-		document.querySelector(":focus-within");
-		console.info(":focus-within pseudo class already supported.");
-	} catch (error) {
-		document.addEventListener("focus", update, true);
-		document.addEventListener("blur", update, true);
-		console.info(":focus-within pseudo class polyfilled.");
 	}
 })(window, document);
