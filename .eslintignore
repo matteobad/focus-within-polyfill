@@ -1,0 +1,5 @@
+dist/
+node-modules/
+
+# files
+webpack*
