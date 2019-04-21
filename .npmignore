@@ -1,9 +1,9 @@
 # Directories
 .npm/
-node_modules/
+example/
 
 # Files
 .DS_STORE
-.env
 .eslintcache
 npm-debug.log*
+webpack.*.js
