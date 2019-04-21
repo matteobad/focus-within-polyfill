@@ -4,8 +4,8 @@
 	"description": "focus-within pseudo selector polyfill",
 	"main": "dist/focus-within-polyfill.js",
 	"scripts": {
-		"build": "webpack --mode production",
-		"build:dev": "webpack --mode development --progress",
+		"dev": "rollup -c rollup.config.js --environment BUILD:development -w",
+		"build": "rollup -c rollup.config.js --environment BUILD:production",
 		"version": "npm run build && npm --no-git-tag-version version",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -36,12 +36,15 @@
 		"clean-webpack-plugin": "^2.0.1",
 		"eslint": "^5.16.0",
 		"eslint-loader": "^2.1.2",
-		"webpack": "^4.30.0",
-		"webpack-cli": "^3.3.0",
-		"webpack-merge": "^4.2.1"
+		"rollup": "^1.10.1",
+		"rollup-plugin-eslint": "^5.1.0",
+		"rollup-plugin-terser": "^4.0.4"
 	},
 	"browserslist": [
 		"last 2 versions",
 		"ie >= 11"
-	]
+	],
+	"dependencies": {
+		"smoothscroll-polyfill": "^0.4.4"
+	}
 }
