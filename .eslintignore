@@ -2,4 +2,4 @@ dist/
 node-modules/
 
 # files
-webpack*
+webpack.*.js
