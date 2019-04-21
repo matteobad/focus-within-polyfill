@@ -3,7 +3,8 @@ const webpackMerge = require("webpack-merge");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const entry = {
-	["focus-within-polyfill"]: path.resolve("./src/focus-within-polyfill.js")
+	"focus-within-polyfill": path.resolve("./src/focus-within-polyfill.js"),
+	"focus-within-polyfill.min": path.resolve("./src/focus-within-polyfill.js")
 };
 
 const output = {
@@ -32,6 +33,14 @@ const loaders = {
 	]
 };
 
+const stats = {
+	all: false,
+	modules: true,
+	errors: true,
+	warnings: true,
+	colors: true
+};
+
 const plugins = [new CleanWebpackPlugin()];
 
 module.exports = (env, argv) => {
@@ -41,7 +50,8 @@ module.exports = (env, argv) => {
 			entry: entry,
 			output: output,
 			module: loaders,
-			plugins: plugins
+			plugins: plugins,
+			stats: stats
 		},
 		require(`./webpack.${argv.mode}.js`)
 	);
