@@ -9,7 +9,10 @@
 		"build:prod": "rollup -c rollup.config.js --environment BUILD:production",
 		"watch": "rollup -c rollup.config.js --environment BUILD:development -w",
 		"prepublish": "npm run build",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"preversion": "npm test",
+		"version": "npm run build",
+		"postversion": "git push && git push --tags",
+		"test": "echo \"Error: no test specified\" && exit 0"
 	},
 	"repository": {
 		"type": "git",
