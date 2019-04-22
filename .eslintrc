@@ -9,8 +9,9 @@
 		"sourceType": "module"
 	},
 	"rules": {
-		"no-console": "off",
 		"quotes": [2, "single", { "avoidEscape": true }],
-		"semi": [2, "never"]
+		"semi": [2, "never"],
+		"no-console": "off",
+		"no-throw-literal": "error"
 	}
 }
