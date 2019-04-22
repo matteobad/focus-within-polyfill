@@ -1,6 +1,6 @@
 {
 	"name": "focus-within-polyfill",
-	"version": "1.3.2",
+	"version": "1.3.3",
 	"description": "focus-within pseudo selector polyfill",
 	"main": "dist/focus-within-polyfill.js",
 	"scripts": {
