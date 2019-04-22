@@ -6,4 +6,4 @@ example/
 .DS_STORE
 .eslintcache
 npm-debug.log*
-webpack.*.js
+rollup.*.js

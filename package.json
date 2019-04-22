@@ -4,9 +4,11 @@
 	"description": "focus-within pseudo selector polyfill",
 	"main": "dist/focus-within-polyfill.js",
 	"scripts": {
-		"build": "webpack --mode production",
-		"build:dev": "webpack --mode development --progress",
-		"version": "npm run build && npm --no-git-tag-version version",
+		"build": "npm run build:dev && npm run build:prod",
+		"build:dev": "rollup -c rollup.config.js --environment BUILD:development",
+		"build:prod": "rollup -c rollup.config.js --environment BUILD:production",
+		"watch": "rollup -c rollup.config.js --environment BUILD:development -w",
+		"prepublish": "npm run build",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -24,24 +26,17 @@
 		"pseudo-class",
 		"no-jquery",
 		"vanilla",
-		"vanillajs",
-		"vanilla-javascript"
+		"vanilla-js"
 	],
 	"author": "Matteo Badini",
 	"license": "MIT",
+	"dependencies": {},
 	"devDependencies": {
-		"@babel/core": "^7.4.3",
-		"@babel/preset-env": "^7.4.3",
-		"babel-loader": "^8.0.5",
-		"clean-webpack-plugin": "^2.0.1",
-		"eslint": "^5.16.0",
-		"eslint-loader": "^2.1.2",
-		"webpack": "^4.30.0",
-		"webpack-cli": "^3.3.0",
-		"webpack-merge": "^4.2.1"
+		"rollup": "^1.10.1",
+		"rollup-plugin-eslint": "^5.1.0",
+		"rollup-plugin-terser": "^4.0.4"
 	},
 	"browserslist": [
-		"last 2 versions",
-		"ie >= 11"
+		"defaults"
 	]
 }
