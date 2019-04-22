@@ -4,10 +4,11 @@
 	"description": "focus-within pseudo selector polyfill",
 	"main": "dist/focus-within-polyfill.js",
 	"scripts": {
+		"build": "npm run build:dev && npm run build:prod",
 		"build:dev": "rollup -c rollup.config.js --environment BUILD:development",
 		"build:prod": "rollup -c rollup.config.js --environment BUILD:production",
 		"watch": "rollup -c rollup.config.js --environment BUILD:development -w",
-		"prepublish": "npm run build:dev && npm run build:prod",
+		"prepublish": "npm run build",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
