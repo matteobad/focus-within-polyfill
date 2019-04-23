@@ -26,16 +26,16 @@ When the polyfill is included via a script tag it will create a `focusWithin` ob
 
 ```javascript
 /* ES6 */
-import { polyfill, unloadPolyfill } from 'focus-within-polyfill'
+import { laodPolyfill, unloadPolyfill } from 'focus-within-polyfill'
 
-polyfill() 			// load polyfill
+loadPolyfill() 		// load polyfill
 unloadPolyfill()	// unload polyfill
 
 
 /* ES5 */
 <script src='path/to/focus-within-polyfill.js'></script>
 
-focusWithin.polyfill()			// load polyfill
+focusWithin.laodPolyfill()		// load polyfill
 focusWithin.unloadPolyfill() 	// unload polyfill
 ```
 
