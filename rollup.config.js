@@ -1,21 +1,31 @@
 import { eslint } from 'rollup-plugin-eslint'
 import { terser } from 'rollup-plugin-terser'
+import pkg from './package.json'
 
-const plugins =
-	process.env.BUILD !== 'development'
-		? [eslint(), terser({ warnings: 'verbose' })]
-		: [eslint()]
+const isDev = process.env.BUILD === 'development'
 
-const outputFile =
-	process.env.BUILD !== 'development'
-		? 'dist/focus-within.min.js'
-		: 'dist/focus-within.js'
+let external = Object.keys(pkg.dependencies)
+let plugins = [eslint()]
+
+if (!isDev) {
+	plugins.push(terser())
+}
 
 export default {
-	input: './src/focus-within.js',
-	output: {
-		file: outputFile,
-		format: 'iife'
-	},
-	plugins: plugins
+	input: 'src/focus-within.js',
+	output: [
+		{
+			file: pkg.main,
+			format: 'umd',
+			name: 'focusWithin',
+			sourceMap: true
+		},
+		{
+			file: pkg.module,
+			format: 'es',
+			sourceMap: true
+		},
+	],
+	plugins: plugins,
+	external: external
 }

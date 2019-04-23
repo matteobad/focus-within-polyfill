@@ -49,11 +49,17 @@
 		</main>
 
 		<!-- Import like this -->
-		<script src="../dist/focus-within.min.js"></script>
+		<script src="../dist/focus-within-polyfill.js"></script>
+		<script>
+			focusWithin.loadPolyfill()
+			focusWithin.unloadPolyfill()
+		</script>
 
 		<!-- OR like this -->
-		<!-- <script type="module">
-			import focus from "../dist/focus-within.min.js";
-		</script> -->
+		<script type="module">
+			import { loadPolyfill, unloadPolyfill } from "../dist/focus-within-polyfill.mjs"
+			loadPolyfill()
+			unloadPolyfill()
+		</script>
 	</body>
 </html>

@@ -2,16 +2,16 @@
 	"name": "focus-within-polyfill",
 	"version": "1.3.4",
 	"description": "focus-within pseudo selector polyfill",
-	"main": "dist/focus-within.js",
+	"main": "dist/focus-within-polyfill.js",
+  	"module": "dist/focus-within-polyfill.mjs",
+  	"jsnext:main": "dist/focus-within-polyfill.mjs",
 	"scripts": {
-		"build": "npm run build:dev && npm run build:prod",
-		"build:dev": "rollup -c rollup.config.js --environment BUILD:development",
-		"build:prod": "rollup -c rollup.config.js --environment BUILD:production",
+		"build": "rollup -c rollup.config.js --environment BUILD:production",
 		"watch": "rollup -c rollup.config.js --environment BUILD:development -w",
-		"prepublish": "npm run build",
 		"preversion": "npm test",
 		"version": "npm run build",
 		"postversion": "git push && git push --tags",
+		"prepublish": "npm run build",
 		"test": "echo \"Error: no test specified\" && exit 0"
 	},
 	"repository": {
