@@ -1,23 +1,25 @@
-import { supportsPseudo } from './supports-pseudo'
+import { supportsFocusWithin, validClassName } from './utils'
+
+var focusWithinClass, loaded
 
 /**
  * Update focus-within class on focus and blur events
  * @param {FocusEvent} e
  */
 function update(e) {
-	var el, element, running
+	var element, running
 
 	var action = function() {
 		element = document.activeElement
 		running = false
 
 		Array.prototype.slice
-			.call(document.getElementsByClassName('focus-within'))
-			.forEach(el => el.classList.remove('focus-within'))
+			.call(document.getElementsByClassName(focusWithinClass))
+			.forEach(function(el) { el.classList.remove(focusWithinClass) })
 
 		if (e.type === 'focus' && element && element !== document.body)
-			for (el = element; el && el.nodeType === 1; el = el.parentNode)
-				el.classList.add('focus-within')
+			for (var el = element; el && el.nodeType === 1; el = el.parentNode)
+				el.classList.add(focusWithinClass)
 	}
 
 	if (!running) {
@@ -28,22 +30,34 @@ function update(e) {
 
 /**
  * Load polyfill
+ * @param {String} className
+ * @returns {void}
  */
-export function loadPolyfill() {
-	if (!supportsPseudo()) {
+export function loadPolyfill(className) {
+	focusWithinClass = className || 'focus-within'
+	if (!validClassName(focusWithinClass)) {
+		console.warn('focus-within-polyfill: cannot load. ' + focusWithinClass + ' is not a valid class name')
+		return
+	}
+
+	if (!loaded && supportsFocusWithin()) {
 		document.addEventListener('focus', update, true)
 		document.addEventListener('blur', update, true)
-		console.info(':focus-within polyfill loaded.')
+		loaded = true
 	}
 }
 
 /**
  * Unload polyfill
+ * @returns {void}
  */
 export function unloadPolyfill() {
-	if (!supportsPseudo()) {
-		document.removeEventListener('focus', update, true)
-		document.removeEventListener('blur', update, true)
-		console.info(':focus-within polyfill removed.')
+	if (!loaded) {
+		console.warn('focus-within-polyfill: cannot unload. Polyfill was never loaded.')
+		return
 	}
+
+	document.removeEventListener('focus', update, true)
+	document.removeEventListener('blur', update, true)
+	loaded = false
 }
