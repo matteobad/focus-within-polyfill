@@ -12,7 +12,7 @@ More information on [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:focu
 
 ## How to use
 
-This package is available both as production ready script and as a package. The script can be downloaded [here](https://unpkg.com/focus-within-polyfill/dist/focus-within.min.js), or installed with a package manager.
+This package is available both as production ready script and as a package. The script can be downloaded [here](https://unpkg.com/focus-within-polyfill/dist/focus-within-polyfill.js), or installed with a package manager.
 
 ```sh
 # npm
@@ -22,20 +22,22 @@ npm install focus-within-polyfill --save
 yarn add focus-within-polyfill
 ```
 
-When the polyfill is included via a script tag it will create a `focusWithin` object with a `loadPolyfill` and a `unloadPolyfill` method to initialize the code. On the other hand when imported as a dependency the same methods are exposed.
+When the polyfill is included via a script tag it will create a `focusWithin` object with `loadPolyfill(string)` and `unloadPolyfill()` methods to initialize and removed the polyfill. In addition this library is available as a es6 module that can be imported and bundled up with any build tools.
+
+After import and initialization the polyfill will kick in *only* if `:focus-within` is not supported in the current context. The `.focus-within` class will be added to every element that should have the pseudo-class as needed. Additionally in the initialization fase a custom class can be specified like in the example below.
 
 ```javascript
 /* ES6 */
 import { laodPolyfill, unloadPolyfill } from 'focus-within-polyfill'
 
-loadPolyfill() 		// load polyfill
-unloadPolyfill()	// unload polyfill
+loadPolyfill('my--class') 		// load polyfill
+unloadPolyfill()				// unload polyfill
 
 
 /* ES5 */
 <script src='path/to/focus-within-polyfill.js'></script>
 
-focusWithin.laodPolyfill()		// load polyfill
+focusWithin.loadPolyfill()		// load polyfill
 focusWithin.unloadPolyfill() 	// unload polyfill
 ```
 
@@ -45,5 +47,5 @@ focusWithin.unloadPolyfill() 	// unload polyfill
 * _Natively supported in Firefox_
 * _Natively supported in Safari_
 * _Natively supported in Opera_
-* IE 11
+* IE 10+
 * Edge
