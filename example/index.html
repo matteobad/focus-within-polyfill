@@ -48,9 +48,18 @@
 			</section>
 		</main>
 
-		<!-- <script src="../dist/focus-within-polyfill.min.js"></script> -->
+		<!-- Import like this -->
+		<script src="../dist/focus-within-polyfill.js"></script>
+		<script>
+			focusWithin.loadPolyfill()
+			focusWithin.unloadPolyfill()
+		</script>
+
+		<!-- OR like this -->
 		<script type="module">
-			import "../dist/focus-within-polyfill.min.js";
+			import { loadPolyfill, unloadPolyfill } from "../dist/focus-within-polyfill.mjs"
+			loadPolyfill()
+			unloadPolyfill()
 		</script>
 	</body>
 </html>

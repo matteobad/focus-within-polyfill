@@ -2,4 +2,4 @@ dist/
 node-modules/
 
 # files
-webpack.*.js
+rollup.*.js
