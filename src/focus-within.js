@@ -40,10 +40,11 @@ export function loadPolyfill(className) {
 		return
 	}
 
-	if (!loaded && supportsFocusWithin()) {
+	if (!loaded && !supportsFocusWithin()) {
 		document.addEventListener('focus', update, true)
 		document.addEventListener('blur', update, true)
 		loaded = true
+		console.info('focus-within-polyfill: loaded.')
 	}
 }
 
@@ -60,4 +61,5 @@ export function unloadPolyfill() {
 	document.removeEventListener('focus', update, true)
 	document.removeEventListener('blur', update, true)
 	loaded = false
+	console.info('focus-within-polyfill: unloaded.')
 }

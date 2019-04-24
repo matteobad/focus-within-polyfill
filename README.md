@@ -28,17 +28,17 @@ After import and initialization the polyfill will kick in *only* if `:focus-with
 
 ```javascript
 /* ES6 */
-import { laodPolyfill, unloadPolyfill } from 'focus-within-polyfill'
+import { loadPolyfill, unloadPolyfill } from 'focus-within-polyfill'
 
-loadPolyfill('my--class') 		// load polyfill
-unloadPolyfill()				// unload polyfill
+loadPolyfill('my-class') // load polyfill
+unloadPolyfill() // unload polyfill
 
 
 /* ES5 */
 <script src='path/to/focus-within-polyfill.js'></script>
 
-focusWithin.loadPolyfill()		// load polyfill
-focusWithin.unloadPolyfill() 	// unload polyfill
+focusWithin.loadPolyfill() // load polyfill
+focusWithin.unloadPolyfill() // unload polyfill
 ```
 
 ## Browser Support
