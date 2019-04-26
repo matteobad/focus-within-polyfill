@@ -1,6 +1,7 @@
 # `:focus-within` Pseudo-Class Polyfill
 
-[![npm version](https://badge.fury.io/js/focus-within-polyfill.svg)](https://badge.fury.io/js/focus-within-polyfill) [![Build Status](https://travis-ci.org/matteobad/focus-within-polyfill.svg?branch=master)](https://travis-ci.org/matteobad/focus-within-polyfill/) [![Greenkeeper badge](https://badges.greenkeeper.io/matteobad/focus-within-polyfill.svg)](https://greenkeeper.io/)
+[![npm version](https://badge.fury.io/js/focus-within-polyfill.svg)](https://badge.fury.io/js/focus-within-polyfill) [![Build Status](https://travis-ci.org/matteobad/focus-within-polyfill.svg?branch=master)](https://travis-ci.org/matteobad/focus-within-polyfill/) ![David](https://img.shields.io/david/dev/matteobad/focus-within-polyfill.svg) ![David](https://img.shields.io/david/matteobad/focus-within-polyfill.svg) [![Greenkeeper badge](https://badges.greenkeeper.io/matteobad/focus-within-polyfill.svg)](https://greenkeeper.io/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) ![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-blue.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 * [How to use](#hot-to-use)
 * [Browser support](#browser-support)
