@@ -1,45 +1,71 @@
 {
-	"name": "focus-within-polyfill",
-	"version": "3.0.1",
-	"description": "focus-within pseudo selector polyfill",
-	"main": "dist/focus-within-polyfill.js",
-	"module": "dist/focus-within-polyfill.mjs",
-	"jsnext:main": "dist/focus-within-polyfill.mjs",
-	"scripts": {
-		"build": "rollup -c rollup.config.js --environment BUILD:production",
-		"watch": "rollup -c rollup.config.js --environment BUILD:development -w",
-		"preversion": "npm test",
-		"version": "npm run build",
-		"postversion": "git push && git push --tags",
-		"prepublish": "npm run build",
-		"test": "echo \"Error: no test specified\" && exit 0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/matteobad/focus-within-polyfill"
-	},
-	"bugs": {
-		"url": "https://github.com/matteobad/focus-within-polyfill/issues"
-	},
-	"keywords": [
-		"polyfill",
-		"focus",
-		"blur",
-		"focus-within",
-		"pseudo-class",
-		"no-jquery",
-		"vanilla",
-		"vanilla-js"
-	],
-	"author": "Matteo Badini",
-	"license": "MIT",
-	"dependencies": {},
-	"devDependencies": {
-		"rollup": "^1.10.1",
-		"rollup-plugin-eslint": "^5.1.0",
-		"rollup-plugin-terser": "^4.0.4"
-	},
-	"browserslist": [
-		"defaults"
-	]
+  "name": "focus-within-polyfill",
+  "version": "3.0.1-development",
+  "description": "focus-within pseudo selector polyfill",
+  "main": "dist/focus-within-polyfill.js",
+  "module": "dist/focus-within-polyfill.mjs",
+  "jsnext:main": "dist/focus-within-polyfill.mjs",
+  "scripts": {
+	"commit": "git-cz",
+    "clean": "rimraf dist",
+    "lint": "eslint src test",
+    "build": "rollup -c rollup.config.js --environment BUILD:production",
+    "watch": "rollup -c rollup.config.js --environment BUILD:development -w",
+    "prepublishOnly": "npm run clean && npm run lint && npm run test && npm run build",
+    "upgrade": "npm-check --update",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "semantic-release": "semantic-release"
+  },
+  "homepage": "https://github.com/matteobad/focus-within-polyfill#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matteobad/focus-within-polyfill"
+  },
+  "bugs": {
+    "url": "https://github.com/matteobad/focus-within-polyfill/issues"
+  },
+  "keywords": [
+    "polyfill",
+    "focus",
+    "blur",
+    "focus-within",
+    "pseudo-class",
+    "no-jquery",
+    "vanilla",
+    "vanilla-js"
+  ],
+  "author": "Matteo Badini",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@semantic-release/changelog": "^3.0.2",
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/git": "^7.0.8",
+    "@semantic-release/npm": "^5.1.4",
+    "@semantic-release/release-notes-generator": "^7.1.4",
+    "commitizen": "^3.1.1",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^5.16.0",
+    "husky": "^2.1.0",
+    "npm-check": "^5.9.0",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.10.1",
+    "rollup-plugin-eslint": "^5.1.0",
+    "rollup-plugin-terser": "^4.0.4",
+    "semantic-release": "^15.13.3",
+    "standard": "^12.0.1"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+	  "pre-commit": "npm run lint && npm run test"
+	}
+  }
 }

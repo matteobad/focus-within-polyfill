@@ -19,7 +19,7 @@ export function supportsFocusWithin() {
  * @returns {Boolean}
  */
 export function validClassName(className) {
-	if  (typeof className !== 'string') {
+	if (typeof className !== 'string') {
 		console.error('focus-within-polyfill:' + className + ' is not a string')
 		return false
 	}
