@@ -41,6 +41,10 @@ focusWithin.loadPolyfill() // load polyfill
 focusWithin.unloadPolyfill() // unload polyfill
 ```
 
+## Notes
+
+This polyfill does not support shadow DOM. The goal is to polyfill a feature that is missing in IE and EDGE and since shadow DOM is another feature that [needs polyfilling](https://caniuse.com/#feat=shadowdomv1) in this browser I won't implement such feature, but any PR is well accepted.
+
 ## Browser Support
 
 * _Natively supported in Chrome_

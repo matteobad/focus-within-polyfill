@@ -18,12 +18,13 @@ export default {
 			file: pkg.main,
 			format: 'umd',
 			name: 'focusWithin',
-			sourceMap: true
+			sourcemap: true
 		},
 		{
 			file: pkg.module,
-			format: 'es',
-			sourceMap: true
+			format: 'esm',
+			name: 'focusWithin',
+			sourcemap: true
 		},
 	],
 	plugins: plugins,

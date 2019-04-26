@@ -1,5 +1,5 @@
 {
-	"extends": "eslint:recommended",
+	"extends": ["eslint:recommended", "standard"],
 	"env": {
 		"browser": true,
 		"node": true,
@@ -8,10 +8,11 @@
 	"parserOptions": {
 		"sourceType": "module"
 	},
-	"rules": {
-		"quotes": [2, "single", { "avoidEscape": true }],
-		"semi": [2, "never"],
+  	"rules": {
+		"curly": "off",
+		"indent": ["error", "tab"],
 		"no-console": "off",
-		"no-throw-literal": "error"
-	}
+		"no-tabs": "off",
+		"space-before-function-paren": "off"
+  	}
 }
