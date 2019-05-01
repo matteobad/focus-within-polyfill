@@ -1,65 +1,81 @@
-import { supportsFocusWithin, validClassName } from './utils'
-
-var focusWithinClass, loaded
+import supportsFocusWithin from './utils/supportsFocusWithin'
+import addAttribute from './utils/addAttribute'
+import removeAttribute from './utils/removeAttribute'
 
 /**
- * Update focus-within class on focus and blur events
- * @param {FocusEvent} e
+ * Load polyfill and return loading state boolean
+ *
+ * @param {String} selector
+ * @returns {Boolean}
+ * @throws {TypeError}
  */
-function update (e) {
-	var element, running
+function polyfill (selector) {
+	if (selector) {
+		// check if selector is a string
+		if (typeof selector !== 'string') {
+			throw new TypeError(`Failed to execute '${this.name}' on 'FocusWithin': parameter 1 ('selector') is not a string.')`)
+		}
 
-	var action = function () {
-		element = document.activeElement
-		running = false
+		// check if selector is class or attribute
+		if (selector.charAt(0) !== '.' && (selector.charAt(0) !== '[' && selector.charAt(selector.length - 1) !== ']')) {
+			throw new TypeError(`Failed to execute '${this.name}' on 'FocusWithin': parameter 1 ('selector') is not a valid selector.')`)
+		}
 
-		Array.prototype.slice
-			.call(document.getElementsByClassName(focusWithinClass))
-			.forEach(function (el) { el.classList.remove(focusWithinClass) })
-
-		if (e.type === 'focus' && element && element !== document.body) {
-			for (var el = element; el && el.nodeType === 1; el = el.parentNode) { el.classList.add(focusWithinClass) }
+		// check if valid selector
+		try {
+			document.querySelector(selector)
+		} catch (error) {
+			throw new TypeError(`Failed to execute '${this.name}' on 'FocusWithin': parameter 1 ('selector') is not a valid selector.')`)
 		}
 	}
 
-	if (!running) {
-		window.requestAnimationFrame(action)
-		running = true
+	var attributeName, attributeValue, isClass, loaded
+
+	selector = selector || '[focus-within]'
+	isClass = selector.indexOf('.') === 0
+	attributeName = !isClass ? selector.replace(/[[\]']+/g, '') : 'class'
+	attributeValue = !isClass ? attributeName : selector.replace('.', '')
+
+	/**
+	 * - Remove all applied attributes and
+	 * - Add new attributes based on activeElement
+	 *
+	 * @param {FocusEvent} e
+	 */
+	var handler = function (e) {
+		var element, running
+
+		var _action = function () {
+			element = document.activeElement
+			running = false
+
+			Array.prototype.slice
+				.call(document.querySelectorAll(selector))
+				.forEach(function (el) { removeAttribute(el, attributeName, attributeValue) })
+
+			if (e.type === 'focus' && element && element !== document.body) {
+				for (var el = element; el && el.nodeType === 1; el = el.parentNode) {
+					addAttribute(el, attributeName, attributeValue)
+				}
+			}
+		}
+
+		if (!running) {
+			window.requestAnimationFrame(_action)
+			running = true
+		}
 	}
+
+	// kick off polyfill
+	loaded = !supportsFocusWithin()
+	if (loaded) {
+		document.addEventListener('focus', handler, true)
+		document.addEventListener('blur', handler, true)
+	}
+
+	return loaded
 }
 
-/**
- * Load polyfill
- * @param {String} className
- * @returns {void}
- */
-export function loadPolyfill (className) {
-	focusWithinClass = className || 'focus-within'
-	if (!validClassName(focusWithinClass)) {
-		console.warn('focus-within-polyfill: cannot load. ' + focusWithinClass + ' is not a valid class name')
-		return
-	}
-
-	if (!loaded && !supportsFocusWithin()) {
-		document.addEventListener('focus', update, true)
-		document.addEventListener('blur', update, true)
-		loaded = true
-		console.info('focus-within-polyfill: loaded.')
-	}
-}
-
-/**
- * Unload polyfill
- * @returns {void}
- */
-export function unloadPolyfill () {
-	if (!loaded) {
-		console.warn('focus-within-polyfill: cannot unload. Polyfill was never loaded.')
-		return
-	}
-
-	document.removeEventListener('focus', update, true)
-	document.removeEventListener('blur', update, true)
-	loaded = false
-	console.info('focus-within-polyfill: unloaded.')
+export default {
+	polyfill: polyfill
 }
