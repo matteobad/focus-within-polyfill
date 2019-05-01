@@ -6,60 +6,109 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>Example - focus within polyfill</title>
 
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+		<link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+		<link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+
 		<style>
-			html.focus-within {
-				background: red;
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
 			}
 
-			.main,
-			form {
+			.main {
 				display: flex;
-				flex-direction: column;
-				justify-content: center;
 				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+				height: 100vh; width: 100vw;
+				padding: 2rem;
+				box-sizing: border-box
+			}
+
+			.section {
+				flex: 1;
+				width: 100%;
+			}
+
+			.button-container.focus-within,
+			.button-container[focus-within] {
+				background: lightslategray;
+			}
+
+			.form-container.focus-within,
+			.form-container[focus-within] {
+				background: lightskyblue;
+			}
+
+			.svg-container.focus-within,
+			.svg-container[focus-within] {
+				background: lightcoral;
 			}
 		</style>
 	</head>
 	<body>
 		<main id="main" class="main">
-			<section class="button-container">
-				<button>button</button>
+			<section class="section button-container">
+				<h2>Button Container</h2>
+				<a class="button" href="#">Link</a>
+				<button class="button button-outline">Button</button>
 			</section>
 
-			<section class="a-container">
-				<a href="#">link</a>
-			</section>
-
-			<section class="form-container">
-				<form action="">
-					<input type="text" name="text" id="text" />
-					<input type="radio" name="radio" id="radio" />
-					<input type="checkbox" name="checkbox" id="checkbox" />
-					<textarea
-						name="textarea"
-						id="textarea"
-						cols="30"
-						rows="10"
-					></textarea>
-					<select name="select" id="select">
-						<option value="option"></option>
-					</select>
+			<section class="section form-container">
+				<h2>Form Container</h2>
+				<form>
+					<fieldset>
+						<label for="nameField">Name</label>
+						<input type="text" placeholder="CJ Patoilo" id="nameField">
+						<label for="ageRangeField">Age Range</label>
+						<select id="ageRangeField">
+							<option value="0-13">0-13</option>
+							<option value="14-17">14-17</option>
+							<option value="18-23">18-23</option>
+							<option value="24+">24+</option>
+						</select>
+						<label for="commentField">Comment</label>
+						<textarea placeholder="Hi CJ …" id="commentField"></textarea>
+						<div class="float-right">
+							<input type="checkbox" id="confirmField">
+							<label class="label-inline" for="confirmField">Send a copy to yourself</label>
+						</div>
+					</fieldset>
 				</form>
+			</section>
+
+			<section class="section svg-container">
+				<h2>SVG Container</h2>
+				<svg viewBox="0 0 100 50">
+					<a xlink:href="#0">
+					  <circle cx="20" cy="25" r="5" data-Name="shape 1" data-tabindex="0" />
+					</a>
+					<a xlink:href="#0">
+					  <circle cx="40" cy="25" r="5" data-Name="shape 2" data-tabindex="0" />
+					</a>
+					<a xlink:href="#0">
+					  <circle cx="60" cy="25" r="5" data-Name="shape 3" data-tabindex="0" />
+					</a>
+					<a xlink:href="#0">
+					  <circle cx="80" cy="25" r="5" data-Name="shape 4" data-tabindex="0" />
+					</a>
+				  </svg>
 			</section>
 		</main>
 
 		<!-- Import like this -->
 		<script src="../dist/focus-within-polyfill.js"></script>
 		<script>
-			focusWithin.loadPolyfill()
-			// focusWithin.unloadPolyfill()
+			focusWithin.polyfill()
 		</script>
 
 		<!-- OR like this -->
 		<!-- <script type="module">
-			import { loadPolyfill, unloadPolyfill } from "../dist/focus-within-polyfill.mjs"
-			loadPolyfill()
-			unloadPolyfill()
+			import focusWithin from "../dist/focus-within-polyfill.mjs"
+			focusWithin.polyfill()
 		</script> -->
 	</body>
 </html>
