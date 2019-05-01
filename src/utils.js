@@ -2,7 +2,7 @@
  * Check for :focus-within pseudo class support
  * @returns {Boolean}
  */
-export function supportsFocusWithin() {
+export function supportsFocusWithin () {
 	try {
 		document.querySelector(':focus-within')
 		console.info('focus-within-polyfill: focus-within supported')
@@ -18,7 +18,7 @@ export function supportsFocusWithin() {
  * @param {String} className
  * @returns {Boolean}
  */
-export function validClassName(className) {
+export function validClassName (className) {
 	if (typeof className !== 'string') {
 		console.error('focus-within-polyfill:' + className + ' is not a string')
 		return false

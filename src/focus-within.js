@@ -6,20 +6,20 @@ var focusWithinClass, loaded
  * Update focus-within class on focus and blur events
  * @param {FocusEvent} e
  */
-function update(e) {
+function update (e) {
 	var element, running
 
-	var action = function() {
+	var action = function () {
 		element = document.activeElement
 		running = false
 
 		Array.prototype.slice
 			.call(document.getElementsByClassName(focusWithinClass))
-			.forEach(function(el) { el.classList.remove(focusWithinClass) })
+			.forEach(function (el) { el.classList.remove(focusWithinClass) })
 
-		if (e.type === 'focus' && element && element !== document.body)
-			for (var el = element; el && el.nodeType === 1; el = el.parentNode)
-				el.classList.add(focusWithinClass)
+		if (e.type === 'focus' && element && element !== document.body) {
+			for (var el = element; el && el.nodeType === 1; el = el.parentNode) { el.classList.add(focusWithinClass) }
+		}
 	}
 
 	if (!running) {
@@ -33,7 +33,7 @@ function update(e) {
  * @param {String} className
  * @returns {void}
  */
-export function loadPolyfill(className) {
+export function loadPolyfill (className) {
 	focusWithinClass = className || 'focus-within'
 	if (!validClassName(focusWithinClass)) {
 		console.warn('focus-within-polyfill: cannot load. ' + focusWithinClass + ' is not a valid class name')
@@ -52,7 +52,7 @@ export function loadPolyfill(className) {
  * Unload polyfill
  * @returns {void}
  */
-export function unloadPolyfill() {
+export function unloadPolyfill () {
 	if (!loaded) {
 		console.warn('focus-within-polyfill: cannot unload. Polyfill was never loaded.')
 		return
