@@ -1,7 +1,3 @@
-import supportsFocusWithin from './utils/supportsFocusWithin'
-import addAttribute from './utils/addAttribute'
-import removeAttribute from './utils/removeAttribute'
-
 /**
  * Load polyfill and return loading state boolean
  *
@@ -10,70 +6,146 @@ import removeAttribute from './utils/removeAttribute'
  * @throws {TypeError}
  */
 function polyfill (selector) {
+	var attrName, attrValue, activeElement, lastActiveElement
+
+	// Sanity check
 	if (selector) {
 		// check if selector is a string
 		if (typeof selector !== 'string') {
-			throw new TypeError(`Failed to execute '${this.name}' on 'FocusWithin': parameter 1 ('selector') is not a string.')`)
+			throw new TypeError(
+				'Failed to execute "polyfill" on "focusWithin":' +
+				'parameter 1 ("selector") is not a string.')
 		}
 
 		// check if selector is class or attribute
 		if (selector.charAt(0) !== '.' && (selector.charAt(0) !== '[' && selector.charAt(selector.length - 1) !== ']')) {
-			throw new TypeError(`Failed to execute '${this.name}' on 'FocusWithin': parameter 1 ('selector') is not a valid selector.')`)
+			throw new TypeError(
+				'Failed to execute "polyfill" on "focusWithin":' +
+				'parameter 1 ("selector") is not a valid selector.')
 		}
-
 		// check if valid selector
 		try {
 			document.querySelector(selector)
 		} catch (error) {
-			throw new TypeError(`Failed to execute '${this.name}' on 'FocusWithin': parameter 1 ('selector') is not a valid selector.')`)
+			throw new TypeError(
+				'Failed to execute "polyfill" on "focusWithin":' +
+				'parameter 1 ("selector") is not a valid selector.')
 		}
 	}
 
-	var attributeName, attributeValue, isClass, loaded
-
+	// Variables initialization
 	selector = selector || '[focus-within]'
-	isClass = selector.indexOf('.') === 0
-	attributeName = !isClass ? selector.replace(/[[\]']+/g, '') : 'class'
-	attributeValue = !isClass ? attributeName : selector.replace('.', '')
+	selector = (selector.indexOf('.') !== 0)
+		? (attrName = attrValue = selector.replace(/[[\]']+/g, ''))
+		: (attrName = 'class', attrValue = selector.replace('.', ''))
 
 	/**
-	 * - Remove all applied attributes and
-	 * - Add new attributes based on activeElement
+	 * Find and return the current Element with focus.
+	 * This will loop through shadow DOM.
+	 *
+	 * @returns {Element}
+	 */
+	function findActiveElement () {
+		var activeEl = document.activeElement
+		while (activeEl && activeEl.shadowRoot && activeEl.shadowRoot.activeElement) {
+			activeEl = activeEl.shadowRoot.activeElement
+		}
+		return activeEl
+	}
+
+	/**
+	 * Create and return the event path from root to element.
+	 * The computed path includes element inside a shadowRoot.
+	 *
+	 * @param {Element} el
+	 * @returns {Array}
+	 */
+	function computeEventPath (el) {
+		var path = []
+		while (el && (el.nodeType === 1 || el.nodeType === 11)) {
+			if (el.nodeType !== 11) {
+				path.push(el)
+				el = el.parentNode
+			} else {
+				el = el.host
+			}
+		}
+		return path
+	}
+
+	/**
+	 * Add user defined attribute to element retaining any previously applied attributes.
+	 * Attribute can be the 'class' attribute for compatibility reasons.
+	 *
+	 * @param {String} name
+	 * @param {String} value
+	 */
+	function addAttribute (name, value) {
+		return function (el) {
+			var attributes = el.getAttribute(name) || ''
+			if (attributes.indexOf(value) === -1) {
+				var newAttributes = (attributes + ' ' + value).trim()
+				el.setAttribute(name, newAttributes)
+			}
+		}
+	}
+
+	/**
+	 * Remove user defined attribute value or entire attribute if last one.
+	 * Attribute can be the 'class' attribute for compatibility reasons.
+	 *
+	 * @param {String} name
+	 * @param {String} value
+	 */
+	function removeAttribute (name, value) {
+		return function (el) {
+			var attributes = el.getAttribute(name) || ''
+			if (attributes.indexOf(value) !== -1) {
+				var newAttributes = attributes.replace(value, '').trim()
+				if (newAttributes === '') el.removeAttribute(name)
+				else el.setAttribute(name, newAttributes)
+			}
+		}
+	}
+
+	/**
+	 * Use rAF to remove and apply custom attribute on FocusEvent.
 	 *
 	 * @param {FocusEvent} e
 	 */
-	var handler = function (e) {
-		var element, running
+	function handler (e) {
+		var running
+		activeElement = findActiveElement()
 
-		var _action = function () {
-			element = document.activeElement
+		function action () {
 			running = false
 
 			Array.prototype.slice
-				.call(document.querySelectorAll(selector))
-				.forEach(function (el) { removeAttribute(el, attributeName, attributeValue) })
+				.call(computeEventPath(lastActiveElement))
+				.forEach(removeAttribute(attrName, attrValue))
 
-			if (e.type === 'focus' && element && element !== document.body) {
-				for (var el = element; el && el.nodeType === 1; el = el.parentNode) {
-					addAttribute(el, attributeName, attributeValue)
-				}
-			}
+			lastActiveElement = activeElement
+			if (e.type !== 'focus' || !activeElement) return
+
+			Array.prototype.slice
+				.call(computeEventPath(activeElement))
+				.forEach(addAttribute(attrName, attrValue))
 		}
 
 		if (!running) {
-			window.requestAnimationFrame(_action)
+			window.requestAnimationFrame(action)
 			running = true
 		}
 	}
 
-	// kick off polyfill
-	loaded = !supportsFocusWithin()
-	if (loaded) {
+	try {
+		document.querySelector(':focus-within')
+		return true
+	} catch (error) {
 		document.addEventListener('focus', handler, true)
 		document.addEventListener('blur', handler, true)
+		return false
 	}
-
-	return loaded
 }
 
 export default {

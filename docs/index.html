@@ -12,53 +12,53 @@
 
 		<style>
 			body {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				flex-direction: column;
+				margin: 0;
+				padding: 0;
 			}
 
 			.main {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				flex-direction: column;
-				height: 100vh; width: 100vw;
+				height: 100%;
 				padding: 2rem;
-				box-sizing: border-box
+				box-sizing: border-box;
 			}
 
 			.section {
-				flex: 1;
+				display: flex;
+				flex-direction: column;
 				width: 100%;
+				margin-bottom: 4rem;
 			}
 
-			.button-container.focus-within,
-			.button-container[focus-within] {
-				background: lightslategray;
+			h2 { display: inline-block; }
+			span { opacity: 0; display: inline-block; }
+
+			.section[focus-within] span {
+				opacity: 1;
+				color: lightcoral;
 			}
 
-			.form-container.focus-within,
-			.form-container[focus-within] {
-				background: lightskyblue;
-			}
-
-			.svg-container.focus-within,
-			.svg-container[focus-within] {
-				background: lightcoral;
+			.section:focus-within span {
+				opacity: 1;
+				color: lightcoral;
 			}
 		</style>
 	</head>
 	<body>
-		<main id="main" class="main">
-			<section class="section button-container">
-				<h2>Button Container</h2>
+		<main id="main" class="main container">
+			<section class="section button-container row">
+				<header>
+					<h2>Button Container </h2>
+					<span> :focus-within</span>
+				</header>
 				<a class="button" href="#">Link</a>
 				<button class="button button-outline">Button</button>
 			</section>
 
-			<section class="section form-container">
-				<h2>Form Container</h2>
+			<section class="section form-container row">
+				<header>
+					<h2>Form Container</h2>
+					<span> :focus-within</span>
+				</header>
 				<form>
 					<fieldset>
 						<label for="nameField">Name</label>
@@ -80,8 +80,11 @@
 				</form>
 			</section>
 
-			<section class="section svg-container">
-				<h2>SVG Container</h2>
+			<section class="section svg-container row">
+				<header>
+					<h2>SVG Container</h2>
+					<span> :focus-within</span>
+				</header>
 				<svg viewBox="0 0 100 50">
 					<a xlink:href="#0">
 					  <circle cx="20" cy="25" r="5" data-Name="shape 1" data-tabindex="0" />
@@ -97,18 +100,43 @@
 					</a>
 				  </svg>
 			</section>
+
+			<section class="section shadowRootOpen-container row">
+				<header>
+					<h2>ShadowRoot Open</h2>
+					<span> :focus-within</span>
+				</header>
+			</section>
+
+			<section class="section shadowRootClosed-container row">
+				<header>
+					<h2>ShadowRoot Closed</h2>
+					<span> :focus-within</span>
+				</header>
+			</section>
+
+			<section class="section nestedComponents-container row">
+				<header>
+					<h2>Nested Components</h2>
+					<span> :focus-within</span>
+				</header>
+			</section>
 		</main>
 
+		<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-bundle.js"></script>
+
 		<!-- Import like this -->
-		<script src="../dist/focus-within-polyfill.js"></script>
+		<script src="https://unpkg.com/focus-within-polyfill/dist/focus-within-polyfill.js"></script>
 		<script>
 			focusWithin.polyfill()
 		</script>
 
 		<!-- OR like this -->
 		<!-- <script type="module">
-			import focusWithin from "../dist/focus-within-polyfill.mjs"
+			import focusWithin from "focus-within-polyfill"
 			focusWithin.polyfill()
 		</script> -->
+
+		<script src="./main.js"></script>
 	</body>
 </html>
