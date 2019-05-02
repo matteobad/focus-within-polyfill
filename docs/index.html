@@ -114,19 +114,26 @@
 					<span> :focus-within</span>
 				</header>
 			</section>
+
+			<section class="section nestedComponents-container row">
+				<header>
+					<h2>Nested Components</h2>
+					<span> :focus-within</span>
+				</header>
+			</section>
 		</main>
 
 		<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-bundle.js"></script>
 
 		<!-- Import like this -->
-		<script src="../dist/focus-within-polyfill.js"></script>
+		<script src="https://unpkg.com/focus-within-polyfill/dist/focus-within-polyfill.js"></script>
 		<script>
 			focusWithin.polyfill()
 		</script>
 
 		<!-- OR like this -->
 		<!-- <script type="module">
-			import focusWithin from "../dist/focus-within-polyfill.mjs"
+			import focusWithin from "focus-within-polyfill"
 			focusWithin.polyfill()
 		</script> -->
 

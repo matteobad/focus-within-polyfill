@@ -4,15 +4,14 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) ![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-blue.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 * [How to use](#hot-to-use)
-* [Notes](#notes)
+* [How it works](#how-it-works)
+* [Features](#features)
 * [Browser support](#browser-support)
-* [`:focus-within`](#focus-within)
+* [Demo](#demo)
 
-This package will add two event listeners, one on the *focus* event and one on the *blur* event to trigger the automatic apply and remove of a custom attribute to indicate wheter the Element should have a `:focus-within` pseudo-class. In order to do so and be compatible with older version of IE and Edge the `setAttribute` method is used to set both attributes and classes. This will prevent error like: *`classList` is undefined for SVG Element*.
+The `:focus-within` CSS pseudo-class represents an element that has received focus or contains an element that has received focus. In other words, it represents an element that is itself matched by the :focus pseudo-class or has a descendant that is matched by `:focus`. (This includes descendants in shadow trees.)
 
-## `:focus-within`
-
-The `:focus-within` CSS pseudo-class represents an element that has received focus or contains an element that has received focus. In other words, it represents an element that is itself matched by the :focus pseudo-class or has a descendant that is matched by :focus.
+This selector is useful, to take a common example, for highlighting an entire `<form>` container when the user focuses on one of its `<input>` fields.
 
 More information on [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within).
 
@@ -54,15 +53,26 @@ focusWithin.polyfill('[focus-inside]'); // custom attribute
 focusWithin.polyfill('.focus-within'); // custom class
 ```
 
-## Notes
+## How it works
 
-This polyfill does not support shadow DOM. The goal is to polyfill a feature that is missing in IE and EDGE and since shadow DOM is another feature that [needs polyfilling](https://caniuse.com/#feat=shadowdomv1) in this browser I won't implement such feature, but any PR is well accepted.
+This package will add two event listeners, one on the *focus* event and one on the *blur* event to trigger the automatic apply and remove of a custom attribute to indicate wheter the Element should have a `:focus-within` pseudo-class. In order to do so and be compatible with older version of IE and EDGE the `getAttribute`, `setAttribute` and `removeAttribute` methods are used to set both attributes and classes. Then `requestAnimationFrame` is used to apply the modification to the DOM.
+
+This polyfill is compatible with native [Shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom#what) and with the [webcomponents polyfill](https://www.webcomponents.org/polyfills/). This means that even on IE11 and EDGE you will be able to use the `:focus-within` pseudo-class to style elements even outside a shadowRoot.
+
+## Features
+
+* _Custom attribute/class_ value to apply the polyfill
+* _Shady CSS/DOM_ support even with the [webcomponents polyfill](https://www.webcomponents.org/polyfills/)
+* _Non standard Element_ support, like SVG Element with link inside
 
 ## Browser Support
 
-* _Natively supported in Chrome_
-* _Natively supported in Firefox_
-* _Natively supported in Safari_
-* _Natively supported in Opera_
-* IE 10+
-* Edge
+| Polyfill        | Edge | IE9+ | Chrome | Firefox | Safari |
+| --------------- |:----:|:----:|:------:|:-------:|:------:|
+| `:focus-within` | ✓    | ✓    | ✓      | ✓       | ✓      |
+
+\* This polyfill maybe work on older versions of the browsers.
+
+## Demo
+
+You can try a working demo [here](https://matteobad.github.io/focus-within-polyfill).

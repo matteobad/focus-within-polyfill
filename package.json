@@ -18,13 +18,8 @@
     "semantic-release": "semantic-release"
   },
   "homepage": "https://github.com/matteobad/focus-within-polyfill#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/matteobad/focus-within-polyfill"
-  },
-  "bugs": {
-    "url": "https://github.com/matteobad/focus-within-polyfill/issues"
-  },
+  "repository": "https://github.com/matteobad/focus-within-polyfill",
+  "bugs": "https://github.com/matteobad/focus-within-polyfill/issues",
   "keywords": [
     "polyfill",
     "focus",
@@ -33,7 +28,9 @@
     "pseudo-class",
     "no-jquery",
     "vanilla",
-    "vanilla-js"
+	"vanilla-js",
+	"webcomponents",
+	"shadowRoot"
   ],
   "author": "Matteo Badini",
   "license": "MIT",
@@ -62,9 +59,6 @@
     "semantic-release": "^15.13.3",
     "standard": "^12.0.1"
   },
-  "browserslist": [
-    "defaults"
-  ],
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
