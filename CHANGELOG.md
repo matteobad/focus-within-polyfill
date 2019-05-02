@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/matteobad/focus-within-polyfill/compare/v4.0.0...v4.1.0) (2019-05-02)
+
+
+### Features
+
+* add support for shadow dom ([01707bf](https://github.com/matteobad/focus-within-polyfill/commit/01707bf))
+
 # [4.0.0](https://github.com/matteobad/focus-within-polyfill/compare/v3.1.0...v4.0.0) (2019-05-01)
 
 

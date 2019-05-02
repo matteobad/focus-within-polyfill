@@ -1,6 +1,6 @@
 {
   "name": "focus-within-polyfill",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "focus-within pseudo selector polyfill",
   "main": "dist/focus-within-polyfill.js",
   "module": "dist/focus-within-polyfill.mjs",
@@ -28,9 +28,9 @@
     "pseudo-class",
     "no-jquery",
     "vanilla",
-	"vanilla-js",
-	"webcomponents",
-	"shadowRoot"
+    "vanilla-js",
+    "webcomponents",
+    "shadowRoot"
   ],
   "author": "Matteo Badini",
   "license": "MIT",
