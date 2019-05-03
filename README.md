@@ -7,7 +7,7 @@
 * [How it works](#how-it-works)
 * [Features](#features)
 * [Browser support](#browser-support)
-* [Demo](#demo)
+* [Demo](https://matteobad.github.io/focus-within-polyfill)
 
 The `:focus-within` CSS pseudo-class represents an element that has received focus or contains an element that has received focus. In other words, it represents an element that is itself matched by the :focus pseudo-class or has a descendant that is matched by `:focus`. (This includes descendants in shadow trees.)
 
@@ -72,7 +72,3 @@ This polyfill is compatible with native [Shadow DOM](https://developers.google.c
 | `:focus-within` | ✓    | ✓    | ✓      | ✓       | ✓      |
 
 \* This polyfill maybe work on older versions of the browsers.
-
-## Demo
-
-You can try a working demo [here](https://matteobad.github.io/focus-within-polyfill).
