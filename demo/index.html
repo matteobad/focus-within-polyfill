@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Polyfill :focus-within - Demo</title>
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+	<header>
+		<h1>Browser :focus-within test</h1>
+		<p>
+			This page contains various html controls and demonstrates a proposal for only drawing a focus
+			ring when the keyboard is being used. Navigate through the interactive elements in various
+			ways (using mouse, switch to keyboard, try it on a touch device). You should see the normal
+			platform focus indicator on elements below differently based on whether you interact with them
+			via keyboard or mouse. If you are using the mouse and get lost, at any time you can press a
+			key (such as Shift) to have the focus indicator appear.
+		</p>
+	</header>
+
+	<main>
+		<section class="buttons">
+			<h2>Buttons</h2>
+			<div>
+				<label><input type="checkbox">Checkbox</label>
+			</div>
+			<div>
+				<label><input name="a" type="radio">Radio 1</label>
+				<label><input name="a" type="radio">Radio 2</label>
+			</div>
+			<div>
+				<button>Button</button>
+			</div>
+			<div>
+				<input type="button" value="Input button">
+				<input type="submit" value="Submit button">
+			</div>
+		</section>
+
+		<section class="editable-text">
+			<h2>Editable text</h2>
+			<div>
+				<input placeholder="Single line">
+			</div>
+			<div>
+				<textarea placeholder="Multi line"></textarea>
+			</div>
+			<div>
+				<div contenteditable="true">Contenteditable explicitly set to true</div>
+			</div>
+			<div>
+				<div contenteditable>Contenteditable</div>
+			</div>
+			<div>
+				<div role="textbox" contenteditable="true">Contenteditable with textbox role</div>
+			</div>
+		</section>
+
+		<section class="focusable-divs">
+			<h2>Focusable <code>&lt;div&gt;</code>s</h2>
+			<div tabindex="0"><code>tabindex="0"</code></div>
+			<div tabindex="-1"><code>tabindex="-1"</code></div>
+			<div tabindex="0"><code>tabindex="0"</code> with explicit <code>class="focus-visible"</code></div>
+		</section>
+
+		<section class="selects">
+			<h2>Selects</h2>
+			<label>Select one from drop-down:<br>
+				<select>
+					<option>Apple</option>
+					<option>Orange</option>
+					<option>Banana</option>
+				</select>
+			</label>
+			<label>Select one from list:<br>
+				<select size="5">
+					<option>Apple</option>
+					<option>Orange</option>
+					<option>Banana</option>
+				</select>
+			</label>
+			<label>Select multiple:<br>
+				<select multiple="">
+					<option>Apple</option>
+					<option>Orange</option>
+					<option>Banana</option>
+				</select>
+			</label>
+		</section>
+
+		<section class="other">
+			<h2>Other</h2>
+			<label>Process nice score from -20 to +20:<br>
+				<input type="range" min="-20" max="20" value="0">
+			</label>
+			<label>Bowling score from 0 to 300:<br>
+				<input type="range" min="0" max="300" value="0">
+			</label>
+			<div>
+				<input type="date" value="2008-09-01">
+			</div>
+			<div>
+				<input type="time" value="00:00:00">
+			</div>
+			<div>
+				<input type="number" placeholder="Number">
+			</div>
+			<div>
+				<input type="color" title="Color" value="#00ff00">
+			</div>
+			<div>
+				<input type="file" title="File">
+			</div>
+		</section>
+	</main>
+
+    <script src="https://unpkg.com/focus-within-polyfill"></script>
+</body>
+</html>
