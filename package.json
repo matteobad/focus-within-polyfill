@@ -54,8 +54,8 @@
     "npm-check": "^5.9.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.11.0",
-    "rollup-plugin-eslint": "^5.1.0",
-    "rollup-plugin-terser": "^4.0.4",
+    "rollup-plugin-eslint": "^6.0.0",
+    "rollup-plugin-terser": "^5.0.0",
     "semantic-release": "^15.13.3",
     "standard": "^12.0.1"
   },
