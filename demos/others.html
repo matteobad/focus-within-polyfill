@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>focus-within-polyfill - Others Demo</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Others :focus-within test</h1>
+		<p>
+			This page contains various form elements and demonstrates a proposal for only drawing a focus
+			ring when the keyboard is being used. Navigate through the interactive elements in various
+			ways (using mouse, switch to keyboard, try it on a touch device). You should see a focus
+			indicator on the element's parents whether you interact with them via keyboard or mouse.
+		</p>
+	</header>
+
+	<main>
+		<section class="other">
+			<h2>
+				Other
+				<span>:focus-within</span>
+			</h2>
+			<label>Process nice score from -20 to +20:<br>
+				<input type="range" min="-20" max="20" value="0">
+			</label>
+			<label>Bowling score from 0 to 300:<br>
+				<input type="range" min="0" max="300" value="0">
+			</label>
+			<div>
+				<input type="date" value="2008-09-01">
+			</div>
+			<div>
+				<input type="time" value="00:00:00">
+			</div>
+			<div>
+				<input type="number" placeholder="Number">
+			</div>
+			<div>
+				<input type="color" title="Color" value="#00ff00">
+			</div>
+			<div>
+				<input type="file" title="File">
+			</div>
+		</section>
+	</main>
+
+	<script src="https://unpkg.com/focus-within-polyfill"></script>
+</body>
+</html>

@@ -72,3 +72,15 @@ This polyfill is compatible with native [Shadow DOM](https://developers.google.c
 | `:focus-within` | ✓    | ✓    | ✓      | ✓       | ✓      |
 
 \* This polyfill maybe work on older versions of the browsers.
+
+## 📺 Demos
+
+The [demos](https://github.com/matteobad/focus-within-polyfill/tree/master/demos) folder contains 10+ demos that uses this polyfill.
+
+| Type      | Title                                               | Code                                | Live demo                                                                           |
+| --------- | --------------------------------------------------- | ------------------------------------|------------------------------------------------------------------------------------ |
+| Content   | :focus-within for `<button>, <input>` elements      | [Code](demos/buttons.html)          | [Live](https://matteobad.github.io/focus-within-polyfill/demos/buttons.html)        |
+| Content   | :focus-within for `<div contenteditable>` elements  | [Code](demos/editable-text.html)    | [Live](https://matteobad.github.io/focus-within-polyfill/demos/editable-text.html)  |
+| Content   | :focus-within for `<div tabindex>` elements         | [Code](demos/focusable-divs.html)   | [Live](https://matteobad.github.io/focus-within-polyfill/demos/focusable-divs.html) |
+| Content   | :focus-within for `<select>` elements               | [Code](demos/select.html)           | [Live](https://matteobad.github.io/focus-within-polyfill/demos/select.html)         |
+| Content   | :focus-within for `<others>` elements               | [Code](demos/others.html)           | [Live](https://matteobad.github.io/focus-within-polyfill/demos/others.html)         |

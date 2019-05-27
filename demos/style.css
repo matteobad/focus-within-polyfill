@@ -1,0 +1,6 @@
+.buttons span {
+	color: red;
+}
+.buttons:focus-within span {
+	color: green
+}
