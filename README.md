@@ -15,7 +15,7 @@ This selector is useful, to take a common example, for highlighting an entire `<
 
 More information on [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within).
 
-## How to use
+## ✏️ How to use
 
 This package is available both as production ready script and as a package. The script can be downloaded [here](https://unpkg.com/focus-within-polyfill/dist/focus-within-polyfill.js), or installed with a package manager.
 
@@ -53,19 +53,19 @@ focusWithin.polyfill('[focus-inside]'); // custom attribute
 focusWithin.polyfill('.focus-within'); // custom class
 ```
 
-## How it works
+## 📃 How it works
 
 This package will add two event listeners, one on the *focus* event and one on the *blur* event to trigger the automatic apply and remove of a custom attribute to indicate wheter the Element should have a `:focus-within` pseudo-class. In order to do so and be compatible with older version of IE and EDGE the `getAttribute`, `setAttribute` and `removeAttribute` methods are used to set both attributes and classes. Then `requestAnimationFrame` is used to apply the modification to the DOM.
 
 This polyfill is compatible with native [Shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom#what) and with the [webcomponents polyfill](https://www.webcomponents.org/polyfills/). This means that even on IE11 and EDGE you will be able to use the `:focus-within` pseudo-class to style elements even outside a shadowRoot.
 
-## Features
+## ⭕ Features
 
 * _Custom attribute/class_ value to apply the polyfill
 * _Shady CSS/DOM_ support even with the [webcomponents polyfill](https://www.webcomponents.org/polyfills/)
 * _Non standard Element_ support, like SVG Element with link inside
 
-## Browser Support
+## ✔️ Browser Support
 
 | Polyfill        | Edge | IE9+ | Chrome | Firefox | Safari |
 | --------------- |:----:|:----:|:------:|:-------:|:------:|
@@ -77,10 +77,12 @@ This polyfill is compatible with native [Shadow DOM](https://developers.google.c
 
 The [demos](https://github.com/matteobad/focus-within-polyfill/tree/master/demos) folder contains 10+ demos that uses this polyfill.
 
-| Type      | Title                                               | Code                                | Live demo                                                                           |
-| --------- | --------------------------------------------------- | ------------------------------------|------------------------------------------------------------------------------------ |
-| Content   | :focus-within for `<button>, <input>` elements      | [Code](demos/buttons.html)          | [Live](https://matteobad.github.io/focus-within-polyfill/demos/buttons.html)        |
-| Content   | :focus-within for `<div contenteditable>` elements  | [Code](demos/editable-text.html)    | [Live](https://matteobad.github.io/focus-within-polyfill/demos/editable-text.html)  |
-| Content   | :focus-within for `<div tabindex>` elements         | [Code](demos/focusable-divs.html)   | [Live](https://matteobad.github.io/focus-within-polyfill/demos/focusable-divs.html) |
-| Content   | :focus-within for `<select>` elements               | [Code](demos/select.html)           | [Live](https://matteobad.github.io/focus-within-polyfill/demos/select.html)         |
-| Content   | :focus-within for `<others>` elements               | [Code](demos/others.html)           | [Live](https://matteobad.github.io/focus-within-polyfill/demos/others.html)         |
+| Type      | Title                                                | Code                                | Live demo                                                                           |
+| --------- | ---------------------------------------------------- | ------------------------------------|------------------------------------------------------------------------------------ |
+| Content   | :focus-within for `<button>` elements                | [Code](demos/buttons.html)          | [Live](https://matteobad.github.io/focus-within-polyfill/demos/buttons.html)        |
+| Content   | :focus-within for `<input type="radio">` elements    | [Code](demos/radios.html)           | [Live](https://matteobad.github.io/focus-within-polyfill/demos/radios.html)         |
+| Content   | :focus-within for `<input type="checkbox">` elements | [Code](demos/checkboxes.html)       | [Live](https://matteobad.github.io/focus-within-polyfill/demos/checkboxes.html)     |
+| Content   | :focus-within for `<div contenteditable>` elements   | [Code](demos/editable-text.html)    | [Live](https://matteobad.github.io/focus-within-polyfill/demos/editable-text.html)  |
+| Content   | :focus-within for `<div tabindex>` elements          | [Code](demos/focusable-divs.html)   | [Live](https://matteobad.github.io/focus-within-polyfill/demos/focusable-divs.html) |
+| Content   | :focus-within for `<select>` elements                | [Code](demos/select.html)           | [Live](https://matteobad.github.io/focus-within-polyfill/demos/select.html)         |
+| Content   | :focus-within for other elements                     | [Code](demos/others.html)           | [Live](https://matteobad.github.io/focus-within-polyfill/demos/others.html)         |

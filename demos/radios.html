@@ -4,15 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>focus-within-polyfill - Button Demo</title>
+	<title>focus-within-polyfill - Radio Demo</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<header>
-		<h1>Button :focus-within test</h1>
+		<h1>Radio :focus-within test</h1>
 		<p>
-			This page contains various buttons and demonstrates a proposal for only drawing a focus
+			This page contains various inputs type radio and demonstrates a proposal for only drawing a focus
 			ring when the keyboard is being used. Navigate through the interactive elements in various
 			ways (using mouse, switch to keyboard, try it on a touch device). You should see a focus
 			indicator on the element's parents whether you interact with them via keyboard or mouse.
@@ -22,23 +22,30 @@
 	<main>
 		<section class="buttons">
 			<h2>
-				Buttons
+				Radio Groups
 				<span>:focus-within</span>
 			</h2>
 			<form>
 				<fieldset>
-					<legend>Standard button</legend>
+					<legend>Radio with label</legend>
 					<div>
-						<button>Button</button>
+						<input type="radio" id="choice1" name="a" value="email" checked>
+						<label for="choice1">Radio 1</label>
+
+						<input type="radio" id="contactChoice2" name="a" value="phone">
+						<label for="choice2">Radio 2</label>
+
+						<input type="radio" id="contactChoice3" name="a" value="mail">
+						<label for="choice3">Radio 3</label>
 					</div>
 				</fieldset>
-
+			</form>
+			<form>
 				<fieldset>
-					<legend>Input button</legend>
+					<legend>Radio inside label</legend>
 					<div>
-						<input type="button" value="Input button">
-						<input type="reset" value="Reset button">
-						<input type="submit" value="Submit button">
+						<label><input name="b" type="radio">Radio 1</label>
+						<label><input name="b" type="radio">Radio 2</label>
 					</div>
 				</fieldset>
 			</form>
