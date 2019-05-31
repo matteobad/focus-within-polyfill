@@ -1,8 +1,9 @@
 module.exports = {
     "env": {
-        "browser": true,
+		"browser": true,
+		"jest/globals": true,
         "es6": true,
-        "node": true
+        "node": true,
     },
     "extends": "standard",
     "globals": {
@@ -12,9 +13,15 @@ module.exports = {
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
-    },
+	},
+	"plugins": ["jest"],
     "rules": {
 		"indent": ["error", "tab"],
-		"no-tabs": "off"
+		"jest/no-disabled-tests": "warn",
+		"jest/no-focused-tests": "error",
+		"jest/no-identical-title": "error",
+		"jest/prefer-to-have-length": "warn",
+		"jest/valid-expect": "error",
+		"no-tabs": "off",
     }
 };
