@@ -9,7 +9,9 @@ jobs:
     - stage: release
       node_js: lts/*
       # Advanced: optionally overwrite your default `script` step to skip the tests
-      # script: skip
+      script:
+	  	- npm run build
+	  	- npm run test
       deploy:
         provider: script
         skip_cleanup: true
