@@ -1,37 +1,11 @@
 /**
- * Load polyfill and return loading state boolean
+ * :focus-within Polyfill
  *
  * @param {String} selector
  * @returns {Boolean}
- * @throws {TypeError}
  */
 function polyfill (selector) {
 	var attrName, attrValue, activeElement, lastActiveElement
-
-	// Sanity check
-	if (selector) {
-		// check if selector is a string
-		if (typeof selector !== 'string') {
-			throw new TypeError(
-				'Failed to execute "polyfill" on "focusWithin":' +
-				'parameter 1 ("selector") is not a string.')
-		}
-
-		// check if selector is class or attribute
-		if (selector.charAt(0) !== '.' && (selector.charAt(0) !== '[' && selector.charAt(selector.length - 1) !== ']')) {
-			throw new TypeError(
-				'Failed to execute "polyfill" on "focusWithin":' +
-				'parameter 1 ("selector") is not a valid selector.')
-		}
-		// check if valid selector
-		try {
-			document.querySelector(selector)
-		} catch (error) {
-			throw new TypeError(
-				'Failed to execute "polyfill" on "focusWithin":' +
-				'parameter 1 ("selector") is not a valid selector.')
-		}
-	}
 
 	// Variables initialization
 	selector = selector || '[focus-within]'
@@ -138,13 +112,21 @@ function polyfill (selector) {
 		}
 	}
 
-	try {
-		document.querySelector(':focus-within')
-		return true
-	} catch (error) {
+	/**
+	 * Attach event listerns to initiate polyfill
+	 */
+	function attachListeners () {
 		document.addEventListener('focus', handler, true)
 		document.addEventListener('blur', handler, true)
-		return false
+	}
+
+	try {
+		document.querySelector(':focus-within')
+		if (window.forceFocusWithinPolyfill) {
+			attachListeners()
+		}
+	} catch (error) {
+		attachListeners()
 	}
 }
 
