@@ -60,7 +60,7 @@
     "jest": "^24.8.0",
     "npm-check": "^5.9.0",
     "rimraf": "^2.6.3",
-    "rollup": "^1.12.4",
+    "rollup": "^1.13.1",
     "rollup-plugin-eslint": "^6.0.0",
     "rollup-plugin-terser": "^5.0.0",
     "semantic-release": "^15.13.14",
