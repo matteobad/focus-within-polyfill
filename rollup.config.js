@@ -10,20 +10,12 @@ if (!isDev) plugins.push(terser())
 
 export default {
 	input: 'src/focus-within.js',
-	output: [
-		{
-			file: pkg.main,
-			format: 'umd',
-			name: 'focusWithin',
-			sourcemap: true
-		},
-		{
-			file: pkg.module,
-			format: 'esm',
-			name: 'focusWithin',
-			sourcemap: true
-		},
-	],
+	output: {
+		file: pkg.main,
+		format: 'iife',
+		name: 'focusWithin',
+		sourcemap: true
+	},
 	plugins: plugins,
 	external: external
 }
