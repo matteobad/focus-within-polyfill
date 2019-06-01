@@ -12,7 +12,7 @@
     "watch": "rollup -c rollup.config.js --environment BUILD:development -w",
     "prepublishOnly": "npm run clean && npm run lint && npm run test && npm run build",
     "upgrade": "npm-check --update",
-    "test": "jest",
+    "test": "bundlesize && jest",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
     "semantic-release": "semantic-release"
@@ -46,6 +46,7 @@
     "@semantic-release/release-notes-generator": "^7.1.4",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.8.0",
+    "bundlesize": "^0.17.2",
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.16.0",
@@ -65,6 +66,12 @@
     "semantic-release": "^15.13.14",
     "standard": "^12.0.1"
   },
+  "bundlesize": [
+    {
+      "path": "./dist/*.js",
+      "maxSize": "1 kB"
+    }
+  ],
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
