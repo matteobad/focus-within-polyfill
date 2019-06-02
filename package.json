@@ -36,6 +36,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
+    "@ampproject/rollup-plugin-closure-compiler": "^0.9.0",
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@semantic-release/changelog": "^3.0.2",
@@ -50,21 +51,14 @@
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.16.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.17.3",
+    "eslint-config-google": "^0.13.0",
     "eslint-plugin-jest": "^22.6.4",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-standard": "^4.0.0",
     "husky": "^2.3.0",
     "jest": "^24.8.0",
     "npm-check": "^5.9.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.13.1",
-    "rollup-plugin-eslint": "^6.0.0",
-    "rollup-plugin-terser": "^5.0.0",
-    "semantic-release": "^15.13.14",
-    "standard": "^12.0.1"
+    "semantic-release": "^15.13.14"
   },
   "bundlesize": [
     {
