@@ -32,7 +32,7 @@
 			h2 { display: inline-block; }
 			span { opacity: 0; display: inline-block; }
 
-			.section[focus-within] span {
+			.section.focus-within span {
 				opacity: 1;
 				color: lightcoral;
 			}
@@ -111,11 +111,8 @@
 
 		<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-bundle.js"></script>
 
-		<!-- Import like this -->
+    <!-- Import like this -->
 		<script src="https://unpkg.com/focus-within-polyfill/dist/focus-within-polyfill.js"></script>
-		<script>
-			focusWithin.polyfill()
-		</script>
 
 		<!-- OR like this -->
 		<!-- <script type="module">

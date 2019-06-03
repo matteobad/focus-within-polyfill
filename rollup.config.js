@@ -5,8 +5,8 @@ let external = Object.keys(pkg.dependencies)
 let plugins = [
 	compiler({
 		compilation_level: 'ADVANCED_OPTIMIZATIONS',
-		language_out: 'ECMASCRIPT_2015'
-	})
+    language_out: 'ECMASCRIPT_2015'
+  })
 ]
 
 const isDev = process.env.BUILD === 'development'

@@ -1,48 +1,25 @@
 /**
  * :focus-within Polyfill
- *
- * @param {string|null} selector
+ * @return {boolean}
  */
-function polyfill(selector) {
-  let attrName; let attrValue; let activeElement; let lastActiveElement;
-
-  // Variables initialization
-  selector = selector || '[focus-within]';
-  selector = (selector.indexOf('.') !== 0)
-    ? (attrName = attrValue = selector.replace(/[[\]']+/g, ''))
-    : (attrName = 'class', attrValue = selector.replace('.', ''));
+function polyfill() {
+  var CLASS_NAME = 'focus-within';
 
   /**
-   * Find and return the current Element with focus.
-   * This will loop through shadow DOM.
    *
-   * @return {Element}
+   *
+   * @param {Element} node
+   * @return {Array} computedPath
    */
-  function findActiveElement() {
-    let el = document.activeElement;
-    while (el && el.shadowRoot && el.shadowRoot.activeElement) {
-      el = el.shadowRoot.activeElement;
-    }
-    return el;
-  }
+  function computeEventPath(node) {
+    var path = [];
+    var parent = null;
 
-  /**
-   * Create and return the event path from root to element.
-   * The computed path includes element inside a shadowRoot.
-   *
-   * @param {Element} el
-   * @return {Array}
-   */
-  function computeEventPath(el) {
-    const path = [];
-    while (el && (el.nodeType === 1 || el.nodeType === 11)) {
-      if (el.nodeType !== 11) {
-        path.push(el);
-        el = el.parentNode;
-      } else {
-        el = el.host;
-      }
+    while ((parent = node.parentNode || node.host || node.defaultView)) {
+      path.push(parent);
+      node = parent;
     }
+
     return path;
   }
 
@@ -51,16 +28,17 @@ function polyfill(selector) {
    * applied attributes. Attribute can be the 'class' attribute for
    * compatibility reasons.
    *
-   * @param {string} name
    * @param {string} value
-   * @return {function} callback
+   * @return {function(Element)} callback
    */
-  function addAttribute(name, value) {
+  function addClass(value) {
     return function(el) {
-      const attributes = el.getAttribute(name) || '';
-      if (attributes.indexOf(value) === -1) {
-        const newAttributes = (attributes + ' ' + value).trim();
-        el.setAttribute(name, newAttributes);
+      var attributes = (typeof el.getAttribute !== 'undefined')
+        ? el.getAttribute('class') || ''
+        : undefined;
+
+      if (attributes && attributes.indexOf(value) === -1) {
+        el.setAttribute('class', attributes.concat(' ', value).trim());
       }
     };
   }
@@ -69,28 +47,31 @@ function polyfill(selector) {
    * Remove user defined attribute value or entire attribute if last one.
    * Attribute can be the 'class' attribute for compatibility reasons.
    *
-   * @param {string} name
    * @param {string} value
-   * @return {function} callback
+   * @return {function(Element)} callback
    */
-  function removeAttribute(name, value) {
+  function removeClass(value) {
     return function(el) {
-      const attributes = el.getAttribute(name) || '';
-      if (attributes.indexOf(value) !== -1) {
-        const newAttributes = attributes.replace(value, '').trim();
-        if (newAttributes === '') el.removeAttribute(name);
-        else el.setAttribute(name, newAttributes);
+      var attributes = (typeof el.getAttribute !== 'undefined')
+        ? el.getAttribute('class') || ''
+        : undefined;
+
+      if (attributes && attributes.indexOf(value) !== -1) {
+        var newAttributes = attributes.replace(value, '').trim();
+        (newAttributes === '')
+          ? el.removeAttribute('class')
+          : el.setAttribute('class', newAttributes);
       }
     };
   }
 
   /**
    * Attach event listerns to initiate polyfill
+   * @return {boolean}
    */
-  function attachListeners() {
-    const handler = function(e) {
-      let running;
-      activeElement = findActiveElement();
+  function load() {
+    var handler = function(e) {
+      var running;
 
       /**
        * Request animation frame callback.
@@ -100,16 +81,17 @@ function polyfill(selector) {
       function action() {
         running = false;
 
-        Array.prototype.slice
-            .call(computeEventPath(lastActiveElement))
-            .forEach(removeAttribute(attrName, attrValue));
+        if ('blur' === e.type) {
+          Array.prototype.slice
+              .call(computeEventPath(e.target))
+              .forEach(removeClass(CLASS_NAME));
+        }
 
-        lastActiveElement = activeElement;
-        if (e.type !== 'focus' || !activeElement) return;
-
-        Array.prototype.slice
-            .call(computeEventPath(activeElement))
-            .forEach(addAttribute(attrName, attrValue));
+        if ('focus' === e.type) {
+          Array.prototype.slice
+              .call(computeEventPath(e.target))
+              .forEach(addClass(CLASS_NAME));
+        }
       }
 
       if (!running) {
@@ -120,15 +102,14 @@ function polyfill(selector) {
 
     document.addEventListener('focus', handler, true);
     document.addEventListener('blur', handler, true);
+    addClass('js-focus-within')(document.body);
+    return true;
   }
 
   try {
-    document.querySelector(':focus-within');
-    if (window.forceFocusWithinPolyfill) {
-      attachListeners();
-    }
+    return !document.querySelector(':' + CLASS_NAME);
   } catch (error) {
-    attachListeners();
+    return load();
   }
 }
 
@@ -137,5 +118,5 @@ if (typeof exports === 'object' && typeof module !== 'undefined') {
     polyfill: polyfill,
   };
 } else {
-  polyfill(null);
+  polyfill();
 }
