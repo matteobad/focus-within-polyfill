@@ -113,10 +113,4 @@ function polyfill() {
   }
 }
 
-if (typeof exports === 'object' && typeof module !== 'undefined') {
-  module.exports = {
-    polyfill: polyfill,
-  };
-} else {
-  polyfill();
-}
+polyfill();

@@ -27,31 +27,21 @@ npm install focus-within-polyfill --save
 yarn add focus-within-polyfill
 ```
 
-When including the polyfill in a script tag, call `window.focusWithin.polyfill(string)` method to initialize the polyfill:
+When included the polyfill will auto-initialize.
 
 ```javascript
 /* ES5 */
 <script src='https://unpkg.com/focus-within-polyfill/dist/focus-within-polyfill.js'></script>
-
-focusWithin.polyfill()
 ```
 
 In addition this library is available as a es6 module that can be imported and bundled up with any build tool. If you are importing it as a dependency, make sure to call the polyfill method:
 
 ```javascript
 /* ES6 */
-import focusWithin from 'focus-within-polyfill'
-
-focusWithin.polyfill()
+import 'focus-within-polyfill'
 ```
 
-After import and initialization the polyfill will kick in **only** if `:focus-within` is not supported in the current browser. By default the `[focus-within]` attribute will be added automatically to every element that should have the pseudo-class. Additionally in the initialization fase a **custom class** or **custom attribute** can be specified like in the example below:
-
-```javascript
-focusWithin.polyfill('[focus-within]'); // default
-focusWithin.polyfill('[focus-inside]'); // custom attribute
-focusWithin.polyfill('.focus-within'); // custom class
-```
+After import and initialization the polyfill will kick in **only** if `:focus-within` is not supported in the current browser. By default the `.focus-within` class will be added automatically to every element that should have the pseudo-class. Additionally in the initialization fase a `.js-focus-within` class will be appended to the body.
 
 ## 📃 How it works
 
@@ -67,9 +57,9 @@ This polyfill is compatible with native [Shadow DOM](https://developers.google.c
 
 ## ✔️ Browser Support
 
-| Polyfill        | Edge | IE9+ | Chrome | Firefox | Safari |
-| --------------- |:----:|:----:|:------:|:-------:|:------:|
-| `:focus-within` | ✓    | ✓    | ✓      | ✓       | ✓      |
+| Polyfill        | Edge | IE11+ | Chrome | Firefox | Safari |
+| --------------- |:----:|:-----:|:------:|:-------:|:------:|
+| `:focus-within` | ✓    | ✓     | ✓      | ✓       | ✓      |
 
 \* This polyfill maybe work on older versions of the browsers.
 
@@ -85,4 +75,6 @@ The [demos](https://github.com/matteobad/focus-within-polyfill/tree/master/demos
 | Content   | :focus-within for `<div contenteditable>` elements   | [Code](demos/editable-text.html)    | [Live](https://matteobad.github.io/focus-within-polyfill/demos/editable-text.html)  |
 | Content   | :focus-within for `<div tabindex>` elements          | [Code](demos/focusable-divs.html)   | [Live](https://matteobad.github.io/focus-within-polyfill/demos/focusable-divs.html) |
 | Content   | :focus-within for `<select>` elements                | [Code](demos/select.html)           | [Live](https://matteobad.github.io/focus-within-polyfill/demos/select.html)         |
+| Content   | :focus-within for `<svg>` elements                   | [Code](demos/svg.html)              | [Live](https://matteobad.github.io/focus-within-polyfill/demos/svg.html)            |
+| Content   | :focus-within for `<web-components>` elements        | [Code](demos/web-components.html)   | [Live](https://matteobad.github.io/focus-within-polyfill/demos/web-components.html) |
 | Content   | :focus-within for other elements                     | [Code](demos/others.html)           | [Live](https://matteobad.github.io/focus-within-polyfill/demos/others.html)         |
