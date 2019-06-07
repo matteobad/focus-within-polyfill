@@ -1,139 +1,116 @@
 /**
  * :focus-within Polyfill
- *
- * @param {String} selector
- * @returns {Boolean}
+ * @return {boolean}
  */
-function polyfill (selector) {
-	var attrName, attrValue, activeElement, lastActiveElement
+function polyfill() {
+  var CLASS_NAME = 'focus-within';
 
-	// Variables initialization
-	selector = selector || '[focus-within]'
-	selector = (selector.indexOf('.') !== 0)
-		? (attrName = attrValue = selector.replace(/[[\]']+/g, ''))
-		: (attrName = 'class', attrValue = selector.replace('.', ''))
+  /**
+   *
+   *
+   * @param {Element} node
+   * @return {Array} computedPath
+   */
+  function computeEventPath(node) {
+    var path = [];
+    var parent = null;
 
-	/**
-	 * Find and return the current Element with focus.
-	 * This will loop through shadow DOM.
-	 *
-	 * @returns {Element}
-	 */
-	function findActiveElement () {
-		var activeEl = document.activeElement
-		while (activeEl && activeEl.shadowRoot && activeEl.shadowRoot.activeElement) {
-			activeEl = activeEl.shadowRoot.activeElement
-		}
-		return activeEl
-	}
+    while ((parent = node.parentNode || node.host || node.defaultView)) {
+      path.push(parent);
+      node = parent;
+    }
 
-	/**
-	 * Create and return the event path from root to element.
-	 * The computed path includes element inside a shadowRoot.
-	 *
-	 * @param {Element} el
-	 * @returns {Array}
-	 */
-	function computeEventPath (el) {
-		var path = []
-		while (el && (el.nodeType === 1 || el.nodeType === 11)) {
-			if (el.nodeType !== 11) {
-				path.push(el)
-				el = el.parentNode
-			} else {
-				el = el.host
-			}
-		}
-		return path
-	}
+    return path;
+  }
 
-	/**
-	 * Add user defined attribute to element retaining any previously applied attributes.
-	 * Attribute can be the 'class' attribute for compatibility reasons.
-	 *
-	 * @param {String} name
-	 * @param {String} value
-	 */
-	function addAttribute (name, value) {
-		return function (el) {
-			var attributes = el.getAttribute(name) || ''
-			if (attributes.indexOf(value) === -1) {
-				var newAttributes = (attributes + ' ' + value).trim()
-				el.setAttribute(name, newAttributes)
-			}
-		}
-	}
+  /**
+   * Add user defined attribute to element retaining any previously
+   * applied attributes. Attribute can be the 'class' attribute for
+   * compatibility reasons.
+   *
+   * @param {string} value
+   * @return {function(Element)} callback
+   */
+  function addClass(value) {
+    return function(el) {
+      var attributes = (typeof el.getAttribute !== 'undefined')
+        ? el.getAttribute('class') || ''
+        : undefined;
 
-	/**
-	 * Remove user defined attribute value or entire attribute if last one.
-	 * Attribute can be the 'class' attribute for compatibility reasons.
-	 *
-	 * @param {String} name
-	 * @param {String} value
-	 */
-	function removeAttribute (name, value) {
-		return function (el) {
-			var attributes = el.getAttribute(name) || ''
-			if (attributes.indexOf(value) !== -1) {
-				var newAttributes = attributes.replace(value, '').trim()
-				if (newAttributes === '') el.removeAttribute(name)
-				else el.setAttribute(name, newAttributes)
-			}
-		}
-	}
+      if (attributes && attributes.indexOf(value) === -1) {
+        el.setAttribute('class', attributes.concat(' ', value).trim());
+      }
+    };
+  }
 
-	/**
-	 * Use rAF to remove and apply custom attribute on FocusEvent.
-	 *
-	 * @param {FocusEvent} e
-	 */
-	function handler (e) {
-		var running
-		activeElement = findActiveElement()
+  /**
+   * Remove user defined attribute value or entire attribute if last one.
+   * Attribute can be the 'class' attribute for compatibility reasons.
+   *
+   * @param {string} value
+   * @return {function(Element)} callback
+   */
+  function removeClass(value) {
+    return function(el) {
+      var attributes = (typeof el.getAttribute !== 'undefined')
+        ? el.getAttribute('class') || ''
+        : undefined;
 
-		function action () {
-			running = false
+      if (attributes && attributes.indexOf(value) !== -1) {
+        var newAttributes = attributes.replace(value, '').trim();
+        (newAttributes === '')
+          ? el.removeAttribute('class')
+          : el.setAttribute('class', newAttributes);
+      }
+    };
+  }
 
-			Array.prototype.slice
-				.call(computeEventPath(lastActiveElement))
-				.forEach(removeAttribute(attrName, attrValue))
+  /**
+   * Attach event listerns to initiate polyfill
+   * @return {boolean}
+   */
+  function load() {
+    var handler = function(e) {
+      var running;
 
-			lastActiveElement = activeElement
-			if (e.type !== 'focus' || !activeElement) return
+      /**
+       * Request animation frame callback.
+       * Remove previously applied attributes.
+       * Add new attributes.
+       */
+      function action() {
+        running = false;
 
-			Array.prototype.slice
-				.call(computeEventPath(activeElement))
-				.forEach(addAttribute(attrName, attrValue))
-		}
+        if ('blur' === e.type) {
+          Array.prototype.slice
+              .call(computeEventPath(e.target))
+              .forEach(removeClass(CLASS_NAME));
+        }
 
-		if (!running) {
-			window.requestAnimationFrame(action)
-			running = true
-		}
-	}
+        if ('focus' === e.type) {
+          Array.prototype.slice
+              .call(computeEventPath(e.target))
+              .forEach(addClass(CLASS_NAME));
+        }
+      }
 
-	/**
-	 * Attach event listerns to initiate polyfill
-	 */
-	function attachListeners () {
-		document.addEventListener('focus', handler, true)
-		document.addEventListener('blur', handler, true)
-	}
+      if (!running) {
+        window.requestAnimationFrame(action);
+        running = true;
+      }
+    };
 
-	try {
-		document.querySelector(':focus-within')
-		if (window.forceFocusWithinPolyfill) {
-			attachListeners()
-		}
-	} catch (error) {
-		attachListeners()
-	}
+    document.addEventListener('focus', handler, true);
+    document.addEventListener('blur', handler, true);
+    addClass('js-focus-within')(document.body);
+    return true;
+  }
+
+  try {
+    return !document.querySelector(':' + CLASS_NAME);
+  } catch (error) {
+    return load();
+  }
 }
 
-if (typeof exports === 'object' && typeof module !== 'undefined') {
-	module.exports = {
-		polyfill: polyfill
-	}
-} else {
-	polyfill()
-}
+polyfill();

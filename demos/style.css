@@ -1,6 +1,13 @@
-.buttons span {
-	color: red;
+H2 > SPAN {
+  opacity: 0;
+  color: lightcoral;
+  transition: opacity 0.2s;
 }
-.buttons:focus-within span {
-	color: green
+
+SECTION.focus-within H2 > SPAN {
+  opacity: 1;
+}
+
+SECTION:focus-within H2 > SPAN {
+  opacity: 1;
 }

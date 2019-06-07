@@ -1,12 +1,16 @@
-import { eslint } from 'rollup-plugin-eslint'
-import { terser } from 'rollup-plugin-terser'
+import compiler from '@ampproject/rollup-plugin-closure-compiler'
 import pkg from './package.json'
 
 let external = Object.keys(pkg.dependencies)
-let plugins = [eslint()]
+let plugins = [
+	compiler({
+		compilation_level: 'ADVANCED_OPTIMIZATIONS',
+    language_out: 'ECMASCRIPT_2015'
+  })
+]
 
 const isDev = process.env.BUILD === 'development'
-if (!isDev) plugins.push(terser())
+if (!isDev) plugins.push()
 
 export default {
 	input: 'src/focus-within.js',
