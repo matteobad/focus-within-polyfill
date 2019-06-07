@@ -51,12 +51,12 @@
     "eslint": "^5.16.0",
     "eslint-config-google": "^0.13.0",
     "eslint-plugin-jest": "^22.6.4",
-    "husky": "^2.3.0",
+    "husky": "^2.4.0",
     "jest": "^24.8.0",
     "npm-check": "^5.9.0",
     "rimraf": "^2.6.3",
-    "rollup": "^1.13.1",
-    "semantic-release": "^15.13.14"
+    "rollup": "^1.14.3",
+    "semantic-release": "^15.13.15"
   },
   "bundlesize": [
     {
