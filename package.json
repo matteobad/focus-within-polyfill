@@ -57,7 +57,7 @@
     "rollup-plugin-eslint": "^6.0.0",
     "rollup-plugin-terser": "^5.0.0",
     "semantic-release": "^15.13.3",
-    "standard": "^12.0.1"
+    "standard": "^13.0.1"
   },
   "config": {
     "commitizen": {
