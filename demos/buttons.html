@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>focus-within-polyfill - Button Demo</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Button :focus-within test</h1>
+		<p>
+			This page contains various buttons and demonstrates a proposal for only drawing a focus
+			ring when the keyboard is being used. Navigate through the interactive elements in various
+			ways (using mouse, switch to keyboard, try it on a touch device). You should see a focus
+			indicator on the element's parents whether you interact with them via keyboard or mouse.
+		</p>
+	</header>
+
+	<main>
+		<section class="buttons">
+			<h2>
+				Buttons
+				<span>:focus-within</span>
+			</h2>
+			<form>
+				<fieldset>
+					<legend>Standard button</legend>
+					<div>
+						<button id="button">Button</button>
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<legend>Input button</legend>
+					<div>
+						<input id="input-button" type="button" value="Input button">
+						<input id="input-reset" type="reset" value="Reset button">
+						<input id="input-submit" type="submit" value="Submit button">
+					</div>
+				</fieldset>
+			</form>
+		</section>
+	</main>
+
+	<script src="https://unpkg.com/focus-within-polyfill"></script>
+</body>
+</html>

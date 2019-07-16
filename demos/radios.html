@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>focus-within-polyfill - Radio Demo</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Radio :focus-within test</h1>
+		<p>
+			This page contains various inputs type radio and demonstrates a proposal for only drawing a focus
+			ring when the keyboard is being used. Navigate through the interactive elements in various
+			ways (using mouse, switch to keyboard, try it on a touch device). You should see a focus
+			indicator on the element's parents whether you interact with them via keyboard or mouse.
+		</p>
+	</header>
+
+	<main>
+		<section class="buttons">
+			<h2>
+				Radio Groups
+				<span>:focus-within</span>
+			</h2>
+			<form>
+				<fieldset>
+					<legend>Radio with label</legend>
+					<div>
+						<input type="radio" id="choice1" name="a" value="email" checked>
+						<label for="choice1">Radio 1</label>
+
+						<input type="radio" id="contactChoice2" name="a" value="phone">
+						<label for="choice2">Radio 2</label>
+
+						<input type="radio" id="contactChoice3" name="a" value="mail">
+						<label for="choice3">Radio 3</label>
+					</div>
+				</fieldset>
+			</form>
+			<form>
+				<fieldset>
+					<legend>Radio inside label</legend>
+					<div>
+						<label><input name="b" type="radio">Radio 1</label>
+						<label><input name="b" type="radio">Radio 2</label>
+					</div>
+				</fieldset>
+			</form>
+		</section>
+	</main>
+
+	<script src="https://unpkg.com/focus-within-polyfill"></script>
+</body>
+</html>

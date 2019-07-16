@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>focus-within-polyfill - Editable Text Demo</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Editable Text :focus-within test</h1>
+		<p>
+			This page contains various editables and demonstrates a proposal for only drawing a focus
+			ring when the keyboard is being used. Navigate through the interactive elements in various
+			ways (using mouse, switch to keyboard, try it on a touch device). You should see a focus
+			indicator on the element's parents whether you interact with them via keyboard or mouse.
+		</p>
+	</header>
+
+	<main>
+		<section class="editable-text">
+			<h2>
+				Editable text
+				<span>:focus-within</span>
+			</h2>
+			<div>
+				<input placeholder="Single line">
+			</div>
+			<div>
+				<textarea placeholder="Multi line"></textarea>
+			</div>
+			<div>
+				<div contenteditable="true">Contenteditable explicitly set to true</div>
+			</div>
+			<div>
+				<div contenteditable>Contenteditable</div>
+			</div>
+			<div>
+				<div role="textbox" contenteditable="true">Contenteditable with textbox role</div>
+			</div>
+		</section>
+	</main>
+
+	<script src="https://unpkg.com/focus-within-polyfill"></script>
+</body>
+</html>

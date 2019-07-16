@@ -1,0 +1,13 @@
+H2 > SPAN {
+  opacity: 0;
+  color: lightcoral;
+  transition: opacity 0.2s;
+}
+
+SECTION.focus-within H2 > SPAN {
+  opacity: 1;
+}
+
+SECTION:focus-within H2 > SPAN {
+  opacity: 1;
+}

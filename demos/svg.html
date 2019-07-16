@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>focus-within-polyfill - Selects Demo</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>SVG :focus-within test</h1>
+		<p>
+			This page contains various svg and demonstrates a proposal for only drawing a focus
+			ring when the keyboard is being used. Navigate through the interactive elements in various
+			ways (using mouse, switch to keyboard, try it on a touch device). You should see a focus
+			indicator on the element's parents whether you interact with them via keyboard or mouse.
+		</p>
+	</header>
+
+	<main>
+		<section class="selects">
+			<h2>
+				SVG
+				<span>:focus-within</span>
+			</h2>
+			<svg viewBox="0 0 100 50">
+        <a xlink:href="#">
+          <circle cx="20" cy="25" r="5" data-Name="shape 1" data-tabindex="0" />
+        </a>
+        <a xlink:href="#">
+          <circle cx="40" cy="25" r="5" data-Name="shape 2" data-tabindex="0" />
+        </a>
+        <a xlink:href="#">
+          <circle cx="60" cy="25" r="5" data-Name="shape 3" data-tabindex="0" />
+        </a>
+        <a xlink:href="#">
+          <circle cx="80" cy="25" r="5" data-Name="shape 4" data-tabindex="0" />
+        </a>
+      </svg>
+		</section>
+	</main>
+
+	<script src="https://unpkg.com/focus-within-polyfill"></script>
+</body>
+</html>

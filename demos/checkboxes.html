@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>focus-within-polyfill - Checkbox Demo</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Checkbox :focus-within test</h1>
+		<p>
+			This page contains various checkboxes and demonstrates a proposal for only drawing a focus
+			ring when the keyboard is being used. Navigate through the interactive elements in various
+			ways (using mouse, switch to keyboard, try it on a touch device). You should see a focus
+			indicator on the element's parents whether you interact with them via keyboard or mouse.
+		</p>
+	</header>
+
+	<main>
+		<section class="buttons">
+			<h2>
+				Checkboxes
+				<span>:focus-within</span>
+			</h2>
+			<form>
+				<fieldset>
+					<legend>Standard checkbox</legend>
+					<div>
+						<input type="checkbox" id="checkbox1">
+						<label for="checkbox1">Checkbox 1</label>
+					</div>
+					<div>
+						<input type="checkbox" id="checkbox2" checked>
+						<label for="checkbox2">Checkbox 2</label>
+					</div>
+					<div>
+						<input type="checkbox" id="checkbox3">
+						<label for="checkbox3">Checkbox 3</label>
+					</div>
+				</fieldset>
+			</form>
+		</section>
+	</main>
+
+	<script>
+		var checkbox = document.getElementById("checkbox3");
+		checkbox.indeterminate = true;
+	</script>
+
+	<script src="https://unpkg.com/focus-within-polyfill"></script>
+</body>
+</html>

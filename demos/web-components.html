@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>focus-within-polyfill - Web Components Demo</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Web Components :focus-within test</h1>
+		<p>
+			This page contains various web components and demonstrates a proposal for only drawing a focus
+			ring when the keyboard is being used. Navigate through the interactive elements in various
+			ways (using mouse, switch to keyboard, try it on a touch device). You should see a focus
+			indicator on the element's parents whether you interact with them via keyboard or mouse.
+		</p>
+	</header>
+
+	<main>
+		<section class="web-components">
+      <h2>
+        Web Components
+        <span>:focus-within</span>
+      </h2>
+      <outer-custom-element></outer-custom-element>
+      <inner-custom-element></inner-custom-element>
+		</section>
+	</main>
+
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="https://unpkg.com/focus-within-polyfill"></script>
+
+  <script>
+    (function() {
+      const tagName = 'outer-custom-element';
+      const template = document.createElement('template');
+      template.innerHTML = `
+        <div id="outer-custom-element">
+          <h3>Outer Custom Element</h3>
+          <a href="#">Outer Focusable link</a>
+        </div>
+      `;
+
+      class OpenShadow extends HTMLElement {
+        connectedCallback() {
+          if (!this.shadowRoot) {
+            this.attachShadow({mode: 'open'});
+            this.shadowRoot.appendChild(template.content.cloneNode(true));
+          }
+        }
+      }
+
+      const register = () => customElements.define(tagName, OpenShadow);
+      window.WebComponents ? window.WebComponents.waitFor(register) : register();
+    })()
+  </script>
+
+  <script>
+    (function() {
+      const tagName = 'inner-custom-element';
+      const template = document.createElement('template');
+      template.innerHTML = `
+        <div id="inner-custom-element">
+          <h3>Inner Custom Element</h3>
+          <a href="#">Inner Focusable link</a>
+        </div>
+      `;
+
+      class CloseShadow extends HTMLElement {
+        connectedCallback() {
+          if (!this.shadowRoot) {
+            this.attachShadow({mode: 'open'});
+            this.shadowRoot.appendChild(template.content.cloneNode(true));
+          }
+        }
+      }
+
+      const register = () => customElements.define(tagName, CloseShadow);
+      window.WebComponents ? window.WebComponents.waitFor(register) : register();
+    })();
+  </script>
+</body>
+</html>
