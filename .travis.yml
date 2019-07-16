@@ -11,7 +11,7 @@ jobs:
       # Advanced: optionally overwrite your default `script` step to skip the tests
       script:
       - npm run build
-      - npm run test
+      # - npm run test
       deploy:
         provider: script
         skip_cleanup: true
