@@ -1,3 +1,33 @@
+# [5.0.0](https://github.com/matteobad/focus-within-polyfill/compare/v4.1.0...v5.0.0) (2019-07-16)
+
+
+### Bug Fixes
+
+* travis ci execution ([e816e25](https://github.com/matteobad/focus-within-polyfill/commit/e816e25))
+
+
+### chore
+
+* update dev-dependencies ([3a715fc](https://github.com/matteobad/focus-within-polyfill/commit/3a715fc))
+
+
+### Features
+
+* add autoinitialization when load via script tag ([7c7cc1a](https://github.com/matteobad/focus-within-polyfill/commit/7c7cc1a))
+* add force polyfill option ([1bb6ab2](https://github.com/matteobad/focus-within-polyfill/commit/1bb6ab2))
+
+
+### Performance Improvements
+
+* add google closure compiler to improve code optimization ([2e9bd92](https://github.com/matteobad/focus-within-polyfill/commit/2e9bd92))
+
+
+### BREAKING CHANGES
+
+* API changed. Now the polyfill only adds a .focus-within class to reduce complexity.
+Following the focus-visible polyfill style.
+* No need to call polyfill() to kick off when using via script tag
+
 # [4.1.0](https://github.com/matteobad/focus-within-polyfill/compare/v4.0.0...v4.1.0) (2019-05-02)
 
 
