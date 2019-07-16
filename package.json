@@ -10,10 +10,11 @@
     "lint:fix": "eslint src/** --fix",
     "build": "rollup -c rollup.config.js --environment BUILD:production",
     "watch": "rollup -c rollup.config.js --environment BUILD:development -w",
-    "prepublishOnly": "npm run clean && npm run lint && npm run test && npm run build",
+    "prepublishOnly": "npm run clean && npm run lint && npm run build && npm run test",
     "upgrade": "npm-check --update",
     "test": "bundlesize",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "homepage": "https://github.com/matteobad/focus-within-polyfill#readme",
   "repository": "https://github.com/matteobad/focus-within-polyfill",
