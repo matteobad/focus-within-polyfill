@@ -6,7 +6,7 @@ function polyfill() {
   var CLASS_NAME = 'focus-within';
 
   /**
-   *
+   * Calculate the entire event path.
    *
    * @param {Element} node
    * @return {Array} computedPath
