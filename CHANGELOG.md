@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.0...v5.0.1) (2019-07-16)
+
+
+### Bug Fixes
+
+* readme syntax ([8296a17](https://github.com/matteobad/focus-within-polyfill/commit/8296a17))
+
 # [5.0.0](https://github.com/matteobad/focus-within-polyfill/compare/v4.1.0...v5.0.0) (2019-07-16)
 
 
