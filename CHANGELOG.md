@@ -1,3 +1,17 @@
+## [5.0.3](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.2...v5.0.3) (2019-07-16)
+
+
+### Bug Fixes
+
+* package.json script ([79eff96](https://github.com/matteobad/focus-within-polyfill/commit/79eff96))
+
+## [5.0.2](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.1...v5.0.2) (2019-07-16)
+
+
+### Bug Fixes
+
+* travis config ([ed58044](https://github.com/matteobad/focus-within-polyfill/commit/ed58044))
+
 ## [5.0.1](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.0...v5.0.1) (2019-07-16)
 
 
