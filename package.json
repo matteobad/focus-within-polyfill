@@ -1,7 +1,7 @@
 {
   "name": "focus-within-polyfill",
   "version": "5.0.3",
-  "description": "focus-within pseudo selector polyfill",
+  "description": "Small vanilla javascript that feature detect the :focus-within pseudo selector and polyfills it with a standard css class if necessary.",
   "main": "dist/focus-within-polyfill.js",
   "scripts": {
     "commit": "git-cz",
