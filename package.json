@@ -50,7 +50,7 @@
     "husky": "^3.0.1",
     "npm-check": "^5.9.0",
     "rimraf": "^2.6.3",
-    "rollup": "^1.17.0",
+    "rollup": "^1.19.1",
     "semantic-release": "^15.13.18"
   },
   "bundlesize": [
