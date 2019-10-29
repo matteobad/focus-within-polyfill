@@ -33,11 +33,12 @@ function polyfill() {
    */
   function addClass(value) {
     return function(el) {
-      var attributes = (typeof el.getAttribute !== 'undefined')
-        ? el.getAttribute('class') || ''
-        : undefined;
+      var attributes = (typeof el.getAttribute !== 'undefined') ?
+        el.getAttribute('class') || '' :
+        undefined;
 
-      if (attributes && attributes.indexOf(value) === -1) {
+      if (typeof attributes !== 'undefined' &&
+        attributes.indexOf(value) === -1) {
         el.setAttribute('class', attributes.concat(' ', value).trim());
       }
     };
