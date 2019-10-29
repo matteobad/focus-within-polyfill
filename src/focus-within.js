@@ -4,6 +4,7 @@
  */
 function polyfill() {
   var CLASS_NAME = 'focus-within';
+  var WHITE_SPACE = ['\n', '\t', ' ', '\r'];
 
   /**
    * Calculate the entire event path.
@@ -53,15 +54,23 @@ function polyfill() {
    */
   function removeClass(value) {
     return function(el) {
-      var attributes = (typeof el.getAttribute !== 'undefined')
-        ? el.getAttribute('class') || ''
-        : undefined;
+      var attributes = (typeof el.getAttribute !== 'undefined') ?
+        el.getAttribute('class') || '' :
+        undefined;
 
-      if (attributes && attributes.indexOf(value) !== -1) {
-        var newAttributes = attributes.replace(value, '').trim();
-        (newAttributes === '')
-          ? el.removeAttribute('class')
-          : el.setAttribute('class', newAttributes);
+      if (attributes) {
+        var index = attributes.indexOf(value);
+        // Check if `value` exists in `attributes` and it is either
+        // at the start or after a whitespace character. This stops
+        // "focus-within" being remove from "js-focus-within".
+        if (index >= 0 &&
+            (index === 0 ||
+              WHITE_SPACE.indexOf(attributes.charAt(index - 1)) >= 0)) {
+          var newAttributes = attributes.replace(value, '').trim();
+          (newAttributes === '') ?
+            el.removeAttribute('class') :
+            el.setAttribute('class', newAttributes);
+        }
       }
     };
   }
