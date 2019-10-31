@@ -1,6 +1,6 @@
 {
   "name": "focus-within-polyfill",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "Small vanilla javascript that feature detect the :focus-within pseudo selector and polyfills it with a standard css class if necessary.",
   "main": "dist/focus-within-polyfill.js",
   "scripts": {
@@ -35,7 +35,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@ampproject/rollup-plugin-closure-compiler": "^0.10.0",
+    "@ampproject/rollup-plugin-closure-compiler": "^0.11.0",
     "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/commit-analyzer": "^6.2.0",
     "@semantic-release/git": "^7.0.16",

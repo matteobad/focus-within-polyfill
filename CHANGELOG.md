@@ -1,3 +1,11 @@
+## [5.0.5](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.4...v5.0.5) (2019-10-31)
+
+
+### Bug Fixes
+
+* class not added to missing attribute ([4f91825](https://github.com/matteobad/focus-within-polyfill/commit/4f91825))
+* js-focus-within being malformed on blur ([c9c86c6](https://github.com/matteobad/focus-within-polyfill/commit/c9c86c6))
+
 ## [5.0.4](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.3...v5.0.4) (2019-07-27)
 
 
