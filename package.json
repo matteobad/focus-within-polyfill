@@ -51,7 +51,7 @@
     "npm-check": "^5.9.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.19.1",
-    "semantic-release": "^15.13.18"
+    "semantic-release": "^16.0.0"
   },
   "bundlesize": [
     {
