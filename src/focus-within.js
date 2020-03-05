@@ -3,8 +3,8 @@
  * @return {boolean}
  */
 function polyfill() {
-  var CLASS_NAME = 'focus-within';
-  var WHITE_SPACE = ['\n', '\t', ' ', '\r'];
+  /** @const */ var CLASS_NAME = 'focus-within';
+  /** @const */ var WHITE_SPACE = ['\n', '\t', ' ', '\r'];
 
   /**
    * Calculate the entire event path.
@@ -34,12 +34,15 @@ function polyfill() {
    */
   function addClass(value) {
     return function(el) {
-      var attributes = (typeof el.getAttribute !== 'undefined') ?
-        el.getAttribute('class') || '' :
-        undefined;
+      var attributes =
+        typeof el.getAttribute !== 'undefined' ?
+          el.getAttribute('class') || '' :
+          undefined;
 
-      if (typeof attributes !== 'undefined' &&
-        attributes.indexOf(value) === -1) {
+      if (
+        typeof attributes !== 'undefined' &&
+        attributes.indexOf(value) === -1
+      ) {
         el.setAttribute('class', attributes.concat(' ', value).trim());
       }
     };
@@ -54,20 +57,23 @@ function polyfill() {
    */
   function removeClass(value) {
     return function(el) {
-      var attributes = (typeof el.getAttribute !== 'undefined') ?
-        el.getAttribute('class') || '' :
-        undefined;
+      var attributes =
+        typeof el.getAttribute !== 'undefined' ?
+          el.getAttribute('class') || '' :
+          undefined;
 
       if (attributes) {
         var index = attributes.indexOf(value);
         // Check if `value` exists in `attributes` and it is either
         // at the start or after a whitespace character. This stops
         // "focus-within" being remove from "js-focus-within".
-        if (index >= 0 &&
-            (index === 0 ||
-              WHITE_SPACE.indexOf(attributes.charAt(index - 1)) >= 0)) {
+        if (
+          index >= 0 &&
+          (index === 0 ||
+            WHITE_SPACE.indexOf(attributes.charAt(index - 1)) >= 0)
+        ) {
           var newAttributes = attributes.replace(value, '').trim();
-          (newAttributes === '') ?
+          newAttributes === '' ?
             el.removeAttribute('class') :
             el.setAttribute('class', newAttributes);
         }
