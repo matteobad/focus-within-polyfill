@@ -1,3 +1,10 @@
+## [5.0.6](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.5...v5.0.6) (2019-12-31)
+
+
+### Bug Fixes
+
+* how to use link ([221da0a](https://github.com/matteobad/focus-within-polyfill/commit/221da0a))
+
 ## [5.0.5](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.4...v5.0.5) (2019-10-31)
 
 
