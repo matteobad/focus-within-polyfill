@@ -4,7 +4,7 @@ import pkg from './package.json'
 let external = Object.keys(pkg.dependencies)
 let plugins = [
 	compiler({
-		compilation_level: 'ADVANCED_OPTIMIZATIONS',
+		compilation_level: 'SIMPLE_OPTIMIZATIONS',
     language_out: 'ECMASCRIPT_2015'
   })
 ]
