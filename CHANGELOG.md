@@ -1,3 +1,11 @@
+## [5.0.7](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.6...v5.0.7) (2020-04-11)
+
+
+### Bug Fixes
+
+* eslint ([0fa9cb7](https://github.com/matteobad/focus-within-polyfill/commit/0fa9cb707e04b2787c2489c19068fff05e36e887))
+* update dependencies to remove vulnerabilities ([f49a048](https://github.com/matteobad/focus-within-polyfill/commit/f49a048fdd07fa0befa9ca9855fa5d3ac384df49))
+
 ## [5.0.6](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.5...v5.0.6) (2019-12-31)
 
 
