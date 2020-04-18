@@ -1,3 +1,10 @@
+## [5.0.8](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.7...v5.0.8) (2020-04-18)
+
+
+### Bug Fixes
+
+* add funding ([18d72f1](https://github.com/matteobad/focus-within-polyfill/commit/18d72f18c22377a35fac3756f1315e230b5639ba))
+
 ## [5.0.7](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.6...v5.0.7) (2020-04-11)
 
 
