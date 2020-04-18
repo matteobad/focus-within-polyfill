@@ -9,6 +9,12 @@
 * [Browser support](#browser-support)
 * [Demo](https://matteobad.github.io/focus-within-polyfill)
 
+---
+
+**Find this usefull? ☕ [Buy me a coffee!](https://ko-fi.com/matteobad)**
+
+---
+
 The `:focus-within` CSS pseudo-class represents an element that has received focus or contains an element that has received focus. In other words, it represents an element that is itself matched by the :focus pseudo-class or has a descendant that is matched by `:focus` (This includes descendants in shadow trees).
 
 This selector is useful, to take a common example, for highlighting an entire `<form>` container when the user focuses on one of its `<input>` fields.
