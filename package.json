@@ -31,7 +31,11 @@
     "webcomponents",
     "shadowRoot"
   ],
-  "author": "Matteo Badini",
+  "author": {
+    "name": "Matteo Badini",
+    "email": "matteo.badini95@gmail.com",
+    "url": "https://matteobad.github.io"
+  },
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
@@ -68,5 +72,9 @@
     "hooks": {
       "pre-commit": "npm run lint && npm run test"
     }
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://ko-fi.com/matteobad"
   }
 }
