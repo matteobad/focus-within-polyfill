@@ -1,3 +1,10 @@
+## [5.0.9](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.8...v5.0.9) (2020-04-23)
+
+
+### Bug Fixes
+
+* check window exists [#73](https://github.com/matteobad/focus-within-polyfill/issues/73) ([3c5b142](https://github.com/matteobad/focus-within-polyfill/commit/3c5b1427c40c8d511c7b3bd4bef43d20d8d35b22))
+
 ## [5.0.8](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.7...v5.0.8) (2020-04-18)
 
 
