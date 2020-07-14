@@ -76,5 +76,8 @@
   "funding": {
     "type": "individual",
     "url": "https://ko-fi.com/matteobad"
+  },
+  "engines": {
+    "node": ">=8"
   }
 }
