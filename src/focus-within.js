@@ -13,7 +13,7 @@ function polyfill() {
    * @return {Array} computedPath
    */
   function computeEventPath(node) {
-    var path = [];
+    var path = [node];
     var parent = null;
 
     while ((parent = node.parentNode || node.host || node.defaultView)) {
