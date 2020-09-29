@@ -123,7 +123,8 @@ function polyfill() {
   }
 
   try {
-    return !document.querySelector(':' + CLASS_NAME);
+    return typeof window !== 'undefined' &&
+      !document.querySelector(':' + CLASS_NAME);
   } catch (error) {
     return load();
   }
