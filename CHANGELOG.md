@@ -1,3 +1,10 @@
+## 5.1.0 (2020-10-11)
+
+
+### Features
+
+* apply focus-within class to focused element too [#80](https://github.com/matteobad/focus-within-polyfill/issues/80)
+
 ## [5.0.9](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.8...v5.0.9) (2020-04-23)
 
 
