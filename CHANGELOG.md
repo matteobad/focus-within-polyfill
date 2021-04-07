@@ -1,3 +1,9 @@
+## [5.2.0](https://github.com/matteobad/focus-within-polyfill/compare/v5.0.9...v5.2.0) (2021-04-07)
+
+### Features
+
+* add ssr support ([1531ce7](https://github.com/matteobad/focus-within-polyfill/commit/1531ce78d25759409132ad9d96e362938a189ac5))
+
 ## 5.1.0 (2020-10-11)
 
 
