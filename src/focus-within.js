@@ -143,7 +143,7 @@ function applyFocusWithinPolyfill(scope) {
   }
 
   try {
-    !document.querySelector(':' + CLASS_NAME);
+    document.querySelector(':' + CLASS_NAME);
   } catch (error) {
     load();
   }
