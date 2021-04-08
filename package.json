@@ -1,6 +1,6 @@
 {
   "name": "focus-within-polyfill",
-  "version": "5.1.0",
+  "version": "5.2.1",
   "description": "Small vanilla javascript that feature detect the :focus-within pseudo selector and polyfills it with a standard css class if necessary.",
   "main": "dist/focus-within-polyfill.js",
   "scripts": {
@@ -11,8 +11,7 @@
     "build": "rollup -c rollup.config.js --environment BUILD:production",
     "watch": "rollup -c rollup.config.js --environment BUILD:development -w",
     "prepublishOnly": "npm run clean && npm run lint && npm run build && npm run test",
-    "upgrade": "npm-check --update",
-    "test": "npm run build && bundlesize",
+    "test": "echo \"Error: no test specified\" && exit 0",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once"
   },
@@ -46,23 +45,15 @@
     "@semantic-release/github": "^7.2.1",
     "@semantic-release/npm": "^7.1.0",
     "@semantic-release/release-notes-generator": "^9.0.2",
-    "bundlesize": "^0.18.1",
     "commitizen": "^4.2.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.23.0",
     "eslint-config-google": "^0.14.0",
     "husky": "^4.3.0",
-    "npm-check": "^5.9.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.44.0",
     "semantic-release": "^17.4.2"
   },
-  "bundlesize": [
-    {
-      "path": "./dist/*.js",
-      "maxSize": "1 kB"
-    }
-  ],
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
