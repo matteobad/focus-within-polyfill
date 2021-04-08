@@ -1,8 +1,12 @@
+
 /**
- * :focus-within Polyfill
- * @return {boolean}
+ * Applies the :focus-within polyfill at the given scope.
+ * A scope in this case is either the top-level Document or a Shadow Root.
+ *
+ * @param {(Document|ShadowRoot)} scope
+ * @see https://github.com/matteobad/focus-within-polyfill
  */
-function polyfill() {
+function applyFocusWithinPolyfill(scope) {
   /** @const */ var CLASS_NAME = 'focus-within';
   /** @const */ var WHITE_SPACE = ['\n', '\t', ' ', '\r'];
 
@@ -83,7 +87,6 @@ function polyfill() {
 
   /**
    * Attach event listerns to initiate polyfill
-   * @return {boolean}
    */
   function load() {
     var handler = function(e) {
@@ -116,18 +119,61 @@ function polyfill() {
       }
     };
 
-    document.addEventListener('focus', handler, true);
-    document.addEventListener('blur', handler, true);
-    addClass('js-focus-within')(document.body);
-    return true;
+    // For focus and blur, we specifically care about state changes in the local
+    // scope. This is because focus / blur events that originate from within a
+    // shadow root are not re-dispatched from the host element if it was already
+    // the active element in its own scope:
+    scope.addEventListener('focus', handler, true);
+    scope.addEventListener('blur', handler, true);
+
+    // We detect that a node is a ShadowRoot by ensuring that it is a
+    // DocumentFragment and also has a host property. This check covers native
+    // implementation and polyfill implementation transparently. If we only
+    // cared about the native implementation, we could just check if the scope
+    // was an instance of a ShadowRoot.
+    if (scope.nodeType === Node.DOCUMENT_FRAGMENT_NODE && scope.host) {
+      // Since a ShadowRoot is a special kind of DocumentFragment, it does not
+      // have a root element to add a class to. So, we add this attribute to the
+      // host element instead:
+      scope.host.setAttribute('data-js-focus-within', '');
+    } else if (scope.nodeType === Node.DOCUMENT_NODE) {
+      addClass('js-focus-within')(document.documentElement);
+      document.documentElement.setAttribute('data-js-focus-within', '');
+    }
   }
 
   try {
-    return typeof window !== 'undefined' &&
-      !document.querySelector(':' + CLASS_NAME);
+    !document.querySelector(':' + CLASS_NAME);
   } catch (error) {
-    return load();
+    load();
   }
 }
 
-polyfill();
+// It is important to wrap all references to global window and document in
+// these checks to support server-side rendering use cases
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+  // Make the polyfill helper globally available. This can be used as a signal
+  // to interested libraries that wish to coordinate with the polyfill for e.g.,
+  // applying the polyfill to a shadow root:
+  window.applyFocusWithinPolyfill = applyFocusWithinPolyfill;
+
+  // Notify interested libraries of the polyfill's presence, in case the
+  // polyfill was loaded lazily:
+  var event;
+
+  try {
+    event = new CustomEvent('focus-within-polyfill-ready');
+  } catch (error) {
+    // IE11 does not support using CustomEvent as a constructor directly:
+    event = document.createEvent('CustomEvent');
+    event.initCustomEvent('focus-within-polyfill-ready', false, false, {});
+  }
+
+  window.dispatchEvent(event);
+}
+
+if (typeof document !== 'undefined') {
+  // Apply the polyfill to the global document, so that no JavaScript
+  // coordination is required to use the polyfill in the top-level document:
+  applyFocusWithinPolyfill(document);
+}
