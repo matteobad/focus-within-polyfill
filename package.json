@@ -11,8 +11,7 @@
     "build": "rollup -c rollup.config.js --environment BUILD:production",
     "watch": "rollup -c rollup.config.js --environment BUILD:development -w",
     "prepublishOnly": "npm run clean && npm run lint && npm run build && npm run test",
-    "upgrade": "npm-check --update",
-    "test": "npm run build && bundlesize",
+    "test": "echo \"Error: no test specified\" && exit 0",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once"
   },
@@ -46,23 +45,15 @@
     "@semantic-release/github": "^7.1.1",
     "@semantic-release/npm": "^7.0.6",
     "@semantic-release/release-notes-generator": "^9.0.1",
-    "bundlesize": "^0.18.0",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.10.0",
     "eslint-config-google": "^0.14.0",
     "husky": "^4.3.0",
-    "npm-check": "^5.9.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.28.2",
     "semantic-release": "^17.1.2"
   },
-  "bundlesize": [
-    {
-      "path": "./dist/*.js",
-      "maxSize": "1 kB"
-    }
-  ],
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
