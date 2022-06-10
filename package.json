@@ -52,7 +52,7 @@
     "husky": "^4.3.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.28.2",
-    "semantic-release": "^17.1.2"
+    "semantic-release": "^19.0.3"
   },
   "config": {
     "commitizen": {
